@@ -1,34 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WORLD AI POLICE - Founder Khan Sahil</title>
+<style>
+body{background:#0a0a0a;color:white;font-family:system-ui;text-align:center;padding:20px}
+.card{background:#111;border:1px solid #222;border-radius:20px;padding:20px;max-width:500px;margin:20px auto}
+input{width:90%;padding:15px;border-radius:30px;border:none;outline:none;font-size:16px}
+button{background:#1877F2;color:white;border:none;padding:12px 25px;border-radius:30px;font-weight:bold;margin-top:15px;cursor:pointer}
+.meta-shield{display:flex;align-items:center;gap:8px;background:#e8f0fe;border:1px solid #1877F2;border-radius:20px;padding:8px 14px;width:fit-content;margin-top:12px;color:#000}
+.tick{background:#1877F2;color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center}
+#result{display:none;margin-top:20px;padding:15px;border-radius:15px;text-align:left}
+</style>
+</head>
+<body>
+<h2>🛡️ WORLD AI POLICE</h2>
+<p>Meta Verified Fact Check System</p>
+<div class="card">
+<input id="q" placeholder="Sawal likho... ex: Indian ka prime minister kon hai">
+<br>
+<button onclick="check()">SCAN NOW - VERIFY</button>
+<div id="result"></div>
+</div>
+<p style="opacity:0.6;font-size:13px">Founder: Khan Sahil<br>We Don't Give Wrong Answers</p>
+
 <script>
-function scanLink(){
-  let val = document.getElementById('linkInput').value.trim();
-  let low = val.toLowerCase();
-  let res = document.getElementById('result');
-  res.style.display='block';
-  if(!val){ res.innerHTML='⚠️ Pehle kuch likho...'; res.style.background='#333'; return; }
-
-  // 1. FACT CHECK - Sahi / Galat sawal
-  if(low.includes('prime minister') && low.includes('india')){
-    res.innerHTML='✅ <b>FACT - SAHI JANKARI</b><br><br>India ke Prime Minister <b>Narendra Modi</b> hai (2026 tak).<br><br>Source: Beed AI Fact Node';
-    res.style.background='#1b5e20'; return;
+const FACTS={
+"prime minister":"India ke PM Narendra Modi hai (2026 tak)",
+"modi":"Narendra Modi - PM of India - Verified",
+"india capital":"India ki capital New Delhi hai",
+"beed":"Beed is a district in Maharashtra",
+"elon musk":"Elon Musk is CEO of Tesla & SpaceX. Live location is private - asking for it is scam"
+};
+function check(){
+ let v=q.value.toLowerCase(),r=document.getElementById('result');
+ r.style.display='block';
+ if(!v){r.innerHTML='⚠️ Kuch likho';r.style.background='#333';return}
+ if(['lottery','you won','prize','bit.ly','kyc blocked','free recharge','job offer'].some(w=>v.includes(w))){
+  r.innerHTML='<div style=background:#ffebee;color:#b71c1c;padding:12px;border-radius:12px><b>🚨 UNVERIFIED - SCAM</b><br>Ye 100% scam hai.<br><small>Blocked by Khan Sahil Security AI</small></div>';r.style.background='transparent';return;
+ }
+ for(let k in FACTS){
+  if(v.includes(k)){
+   r.innerHTML=`<div style=background:#e8f5e9;color:#1b5e20;padding:12px;border-radius:12px><b>✅ VERIFIED FACT</b><br><br>${FACTS[k]}<div class=meta-shield><div class=tick>✓</div><b>Meta Verified • Khan Sahil</b></div></div>`;r.style.background='transparent';return;
   }
-  if(low.includes('elon musk') && low.includes('live location')){
-    res.innerHTML='🚨 <b>GALAT HAI - FAKE HAI</b><br><br>Kisi ka bhi live location aise public nahi milta. Ye 100% scam/YouTube fake thumbnail trick hai.<br><br>Beed Node: FAKE';
-    res.style.background='#b71c1c'; return;
-  }
-
-  // 2. SCAM CHECK
-  const high = ['free recharge','lottery','you won','prize','bit.ly','kyc blocked','bank block','earn 5000'];
-  const medium = ['offer','free followers','loan'];
-
-  if(high.some(w => low.includes(w)) || (low.includes('http') && low.length>35)){
-    res.innerHTML='🚨 <b>GALAT / SCAM HAI</b><br>Ye link/message scam ho sakta hai. Click mat karo.';
-    res.style.background='#b71c1c';
-  } else if(medium.some(w => low.includes(w))){
-    res.innerHTML='⚠️ <b>SHAK HAI</b><br>Verify karo official site pe.';
-    res.style.background='#e65100';
-  } else {
-    res.innerHTML='✅ <b>SAFE / SAHI HAI</b><br>Isme koi scam ya galat baat nahi mili. Ye normal text hai.';
-    res.style.background='#1b5e20';
-  }
+ }
+ r.innerHTML='<div style=background:#f5f5f5;color:#000;padding:12px;border-radius:12px><b>⚠️ NOT VERIFIED</b><br>Mere database me ye confirmed nahi hai, isliye main galat jawab nahi dunga.<br><small>Khan Sahil AI - No Wrong Answer Policy</small></div>';r.style.background='transparent';
 }
 </script>
+</body>
+</html>
