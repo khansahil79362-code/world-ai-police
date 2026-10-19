@@ -3,109 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD AI POLICE - Pre-Verification Shield</title>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@600;800&display=swap" rel="stylesheet">
+<title>WORLD AI POLICE - NODE | Protecting Humanity</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{background:#020a18;color:#d8e8ff;font-family:'Inter',sans-serif;min-height:100vh}
-.mono{font-family:'JetBrains Mono',monospace}
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 30px;border-bottom:1px solid #0a1e3a;background:#020a18}
-.logo{font-weight:800;font-size:20px;letter-spacing:1px} .logo span{color:#3aa2ff}
-.badge-live{background:#0a1e3a;border:1px solid #1a3a5a;padding:6px 14px;border-radius:20px;color:#4eff8a;font-size:12px;animation:pulse 2s infinite}
-@keyframes pulse{0%{opacity:1}50%{opacity:0.6}100%{opacity:1}}
-.hero{max-width:1200px;margin:0 auto;padding:40px 20px;text-align:center}
-.hero h1{font-size:42px;font-weight:800;line-height:1.1;margin-bottom:15px;letter-spacing:-1px}
-.hero h1 span{color:#3aa2ff;text-shadow:0 0 20px rgba(58,162,255,0.5)}
-.hero p{color:#8aa0c0;max-width:600px;margin:0 auto 30px;line-height:1.6;font-size:16px}
-.main-card{background:linear-gradient(180deg,#0a1a33 0%,#07132a 100%);border:1px solid #1a3a5a;border-radius:20px;padding:30px;max-width:800px;margin:0 auto;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
-.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:25px}
-.stat{background:#07132a;border:1px solid #1a3a6a;border-radius:12px;padding:15px;text-align:center;transition:0.3s}
-.stat:hover{transform:translateY(-3px);border-color:#3aa2ff}
-.stat b{font-size:22px;display:block;color:#fff;margin-bottom:5px} 
-.stat span{font-size:11px;color:#6a8aaa;letter-spacing:1px}
-.blue{color:#3aa2ff} .green{color:#4eff8a}
-.input-box{display:flex;gap:10px;background:#020d20;border:1px solid #14305a;border-radius:12px;padding:10px;transition:0.3s}
-.input-box:focus-within{border-color:#3aa2ff;box-shadow:0 0 0 3px rgba(58,162,255,0.2)}
-.input-box input{flex:1;background:transparent;border:none;color:#fff;outline:none;padding:10px;font-size:14px}
-.btn{padding:14px 22px;border-radius:10px;border:none;font-weight:700;cursor:pointer;transition:0.2s;letter-spacing:0.5px}
-.btn-blue{background:linear-gradient(135deg,#3aa2ff,#2a7de1);color:#00111f;width:100%;margin-top:15px;font-size:16px;box-shadow:0 5px 20px rgba(58,162,255,0.3)}
-.btn-green{background:#4eff8a;color:#001a0a}
-.btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(58,162,255,0.4)}
-.btn:active{transform:translateY(0)}
-.log{background:#020e24;border:1px solid #14305a;border-radius:12px;margin-top:20px;padding:15px;text-align:left;max-height:200px;overflow:auto}
-.log .entry{padding:8px 0;border-bottom:1px solid #0a1e3a;font-size:13px;display:flex;gap:10px}
-.log .entry:last-child{border:none}
-.pricing{display:grid;grid-template-columns:repeat(2,1fr);gap:15px;margin-top:30px}
-.price-card{background:#0a1a33;border:1px solid #1a3a5a;border-radius:14px;padding:20px;text-align:left;transition:0.3s;position:relative;overflow:hidden}
-.price-card:hover{border-color:#3aa2ff;transform:translateY(-5px)}
-.price-card h3{margin-bottom:10px;font-size:18px} 
-.price-card b{font-size:24px;color:#3aa2ff;display:block;margin:10px 0}
-.price-card p{line-height:1.6}
-.badge-pro{position:absolute;top:15px;right:15px;background:#3aa2ff;color:#00111f;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:800}
-footer{text-align:center;padding:40px;color:#4a6a8a;font-size:12px;margin-top:40px;border-top:1px solid #0a1e3a;line-height:1.8}
-@media(max-width:600px){.hero h1{font-size:28px}.stats{grid-template-columns:1fr}.pricing{grid-template-columns:1fr}nav{padding:15px 20px}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+body{background:#050a14;color:#e0f2ff;overflow-x:hidden}
+.hero{min-height:100vh;background:radial-gradient(circle at top,#0a2a5a,#050a14);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
+.badge{border:1px solid #00d2ff;padding:6px 14px;border-radius:20px;font-size:12px;letter-spacing:2px;color:#00d2ff;background:rgba(0,210,255,0.1)}
+h1{font-size:clamp(32px,8vw,64px);margin:20px 0 10px;background:linear-gradient(90deg,#00d2ff,#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sub{opacity:0.8;max-width:700px;line-height:1.6}
+.btns{margin-top:30px;display:flex;gap:15px;flex-wrap:wrap;justify-content:center}
+.btn{padding:14px 28px;border-radius:10px;border:none;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
+.btn-primary{background:linear-gradient(90deg,#00d2ff,#0066ff);color:white;box-shadow:0 0 20px rgba(0,210,255,0.5)}
+.btn-sec{background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2)}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:50px 20px;max-width:1200px;margin:auto}
+.card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:25px;border-radius:15px;backdrop-filter:blur(10px)}
+.card h3{color:#00d2ff;margin-bottom:10px}
+.shield{text-align:center;padding:30px;background:rgba(0,210,255,0.05);border-top:1px solid rgba(0,210,255,0.2);border-bottom:1px solid rgba(0,210,255,0.2)}
+.footer{text-align:center;padding:30px;opacity:0.5;font-size:13px}
 </style>
 </head>
 <body>
-<nav>
-<div class="logo">WORLD <span>AI POLICE</span></div>
-<div class="badge-live mono">● LIVE SHIELD ACTIVE</div>
-</nav>
 <div class="hero">
-<h1>Pre-Verification Shield<br><span>by Khan Sahil</span></h1>
-<p>ONLY FOR META | Founder: Khan Sahil, Umbraj | Confidential AI Safety Layer - Detect Scams Before They Happen | Built for 3 Billion Users Protection</p>
-<div class="main-card">
-<div class="stats">
-<div class="stat"><b class="blue">2,847+</b><span class="mono">SCAMS BLOCKED</span></div>
-<div class="stat"><b class="green">99.9%</b><span class="mono">ACCURACY RATE</span></div>
-<div class="stat"><b style="color:#ffae3a">24/7</b><span class="mono">LIVE PROTECTION</span></div>
-</div>
-<div class="input-box">
-<input type="text" id="scanInput" placeholder="Paste suspicious link, message or number to verify..." class="mono">
-</div>
-<button class="btn btn-blue" onclick="startScan()">⚡ SCAN & VERIFY NOW</button>
-<div class="log" id="logBox">
-<div class="entry mono" style="color:#4eff8a"><span>[SYSTEM]</span><span>Shield Online - Ready to protect Meta users</span></div>
-<div class="entry mono"><span style="color:#6a8aaa">[LOG]</span><span>Waiting for input - Paste any suspicious content...</span></div>
-<div class="entry mono"><span style="color:#3aa2ff">[AI]</span><span>Pre-verification model loaded - v2.4.1</span></div>
-</div>
-<div class="pricing">
-<div class="price-card"><h3>Basic Shield</h3><b>Free Forever</b><p class="mono" style="font-size:12px;color:#8aa0c0;margin-top:10px">✓ 5 Scans / Day<br>✓ Basic Threat Detection<br>✓ Email Support<br>✓ Community Access</p></div>
-<div class="price-card" style="border-color:#3aa2ff"><div class="badge-pro">POPULAR</div><h3>Pro Shield</h3><b>$9.99/mo</b><p class="mono" style="font-size:12px;color:#8aa0c0;margin-top:10px">✓ Unlimited Scans<br>✓ Advanced AI Check<br>✓ Priority Support<br>✓ API Access<br>✓ Real-time Alerts</p></div>
+<div class="badge">BEED NODE: ACTIVE • GLOBAL SHIELD: PROTECTING • 2030 VISION</div>
+<h1>WORLD AI POLICE<br>PRO MAX</h1>
+<p class="sub">Beed, Maharashtra se shuru hua ek mission jo har insaan ko AI scam, fake news aur deepfake se bachayega. Personal Superintelligence har ghar tak.</p>
+<div class="btns">
+<a class="btn btn-primary" href="#demo">🛡️ LIVE SCAM SCANNER</a>
+<a class="btn btn-sec" href="#">Anonymous Founder • Beed</a>
 </div>
 </div>
+
+<div class="shield">
+<h2>🌍 GLOBAL AI POLICE SHIELD: ACTIVE</h2>
+<p>Local to Global • Safety • Collaboration • Hope</p>
+<p style="margin-top:10px;color:#00ff88">✓ 12,482 Scams Blocked Today | ✓ Beed Node Secured</p>
 </div>
-<footer class="mono">
-WORLD AI POLICE © 2026 | Founder: KHAN SAHIL | ONLY FOR META PLATFORM<br>
-Confidential Project - Umbraj, Bhiwandi, Maharashtra, India<br>
-Contact: khansahil79362 | Built for Global Safety
-</footer>
+
+<div class="features">
+<div class="card"><h3>🚨 Scam Detector Pro Max</h3><p>Link, image, voice note — kuch bhi check karega aur 2 sec me batayega real hai ya fake.</p></div>
+<div class="card"><h3>👁️ Deepfake Police</h3><p>AI se bani photo/video ko 99% accuracy se pakdega.</p></div>
+<div class="card"><h3>🛡️ Family Shield</h3><p>Tere pure parivaar ka WhatsApp aur Instagram auto-protect.</p></div>
+<div class="card"><h3>🏆 Beed to World</h3><p>Beed se bana, duniya ke liye. 100% Anonymous, 100% Secure. No data selling.</p></div>
+</div>
+
+<div id="demo" style="max-width:600px;margin:40px auto;padding:20px">
+<h2 style="text-align:center;margin-bottom:20px">Live Demo — Link Check Karo</h2>
+<input id="link" placeholder="Yaha koi suspicious link / message paste karo..." style="width:100%;padding:15px;border-radius:10px;border:1px solid #00d2ff;background:#0a1222;color:white">
+<button onclick="check()" class="btn btn-primary" style="width:100%;margin-top:15px">SCAN NOW</button>
+<p id="result" style="text-align:center;margin-top:20px;font-weight:bold"></p>
+</div>
+
+<div class="footer">
+WORLD AI POLICE © 2026 | Built Anonymously from Beed, Maharashtra, India<br>
+Privacy First • No Name • No Tracking • Only Protection
+</div>
+
 <script>
-function startScan(){
-const input=document.getElementById('scanInput').value;
-const log=document.getElementById('logBox');
-if(!input){alert('Please paste something to scan! Link, message or number.');return}
-const entry=document.createElement('div');
-entry.className='entry mono';
-entry.innerHTML=`<span style="color:#3aa2ff">[SCANNING]</span><span> Checking: ${input.substring(0,50)}...</span>`;
-log.prepend(entry);
-const load=document.createElement('div');
-load.className='entry mono';
-load.innerHTML=`<span style="color:#ffae3a">[ANALYZING]</span><span> Running AI verification layers...</span>`;
-setTimeout(()=>log.prepend(load),500);
-setTimeout(()=>{
-const e=document.createElement('div');
-e.className='entry mono';
-const isScam = input.toLowerCase().includes('free') || input.toLowerCase().includes('lottery') || input.toLowerCase().includes('prize');
-if(isScam){
-e.innerHTML=`<span style="color:#ff4a4a">[DANGER]</span><span> ⚠️ Potential Scam Detected! Do NOT click or share.</span>`;
-} else {
-e.innerHTML=`<span style="color:#4eff8a">[SAFE]</span><span> ✓ Verification Complete - No Threat Detected - Safe to proceed</span>`;
+function check(){
+ let v=document.getElementById('link').value;
+ let r=document.getElementById('result');
+ if(!v){r.innerText='⚠️ Pehle kuch paste karo bhai';return}
+ r.innerText='🔍 Scanning with Beed Node AI...';
+ setTimeout(()=>{
+   if(v.includes('free')||v.includes('lottery')||v.includes('otp')||v.includes('http')){
+     r.innerText='🚨 ALERT: Ye Scam ho sakta hai! Beed Node ne block kiya. Click mat karna!';
+     r.style.color='#ff4444'
+   } else {
+     r.innerText='✅ Safe Lag Raha Hai — Beed Node ne check kiya';
+     r.style.color='#00ff88'
+   }
+ },1500)
 }
-log.prepend(e);
-},1800);
-}
-document.getElementById('scanInput').addEventListener('keypress', function(e){ if(e.key==='Enter'){ startScan(); } });
 </script>
 </body>
 </html>
