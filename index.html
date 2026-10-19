@@ -1,57 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD AI POLICE - NODE | Protecting Humanity</title>
+<title>WORLD AI POLICE - Beed Node</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{background:#050a14;color:#e0f2ff;overflow-x:hidden}
-.hero{min-height:100vh;background:radial-gradient(circle at top,#0a2a5a,#050a14);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
-.badge{border:1px solid #00d2ff;padding:6px 14px;border-radius:20px;font-size:12px;letter-spacing:2px;color:#00d2ff;background:rgba(0,210,255,0.1)}
-h1{font-size:clamp(32px,8vw,64px);margin:20px 0 10px;background:linear-gradient(90deg,#00d2ff,#00ff88);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.sub{opacity:0.8;max-width:700px;line-height:1.6}
-.btns{margin-top:30px;display:flex;gap:15px;flex-wrap:wrap;justify-content:center}
-.btn{padding:14px 28px;border-radius:10px;border:none;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
-.btn-primary{background:linear-gradient(90deg,#00d2ff,#0066ff);color:white;box-shadow:0 0 20px rgba(0,210,255,0.5)}
-.btn-sec{background:rgba(255,255,255,0.1);color:white;border:1px solid rgba(255,255,255,0.2)}
-.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;padding:50px 20px;max-width:1200px;margin:auto}
-.card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:25px;border-radius:15px;backdrop-filter:blur(10px)}
-.card h3{color:#00d2ff;margin-bottom:10px}
-.shield{text-align:center;padding:30px;background:rgba(0,210,255,0.05);border-top:1px solid rgba(0,210,255,0.2);border-bottom:1px solid rgba(0,210,255,0.2)}
-.footer{text-align:center;padding:30px;opacity:0.5;font-size:13px}
+body{background:#0a0e14;color:white;font-family:Arial;padding:15px;}
+.card{background:#151a23;border:1px solid #2a3240;border-radius:15px;padding:15px;margin:15px 0;}
+.blue{color:#29b6f6;font-weight:bold;font-size:18px;}
+input{width:100%;padding:15px;border-radius:10px;border:2px solid #555;background:#0a0e14;color:white;box-sizing:border-box;}
+.btn{width:100%;padding:15px;background:#00bfff;border:none;border-radius:10px;color:white;font-weight:bold;font-size:16px;margin-top:10px;}
+.footer{text-align:center;color:#888;font-size:12px;margin-top:30px;}
+#result{margin-top:15px;padding:15px;border-radius:10px;display:none;}
 </style>
 </head>
 <body>
-<div class="hero">
-<div class="badge">BEED NODE: ACTIVE • GLOBAL SHIELD: PROTECTING • 2030 VISION</div>
-<h1>WORLD AI POLICE<br>PRO MAX</h1>
-<p class="sub">Beed, Maharashtra se shuru hua ek mission jo har insaan ko AI scam, fake news aur deepfake se bachayega. Personal Superintelligence har ghar tak.</p>
-<div class="btns">
-<a class="btn btn-primary" href="#demo">🛡️ LIVE SCAM SCANNER</a>
-<a class="btn btn-sec" href="#">Anonymous Founder • Beed</a>
-</div>
+
+<div class="card">
+<div class="blue">👁️ Deepfake Police</div>
+<p>AI se bani photo/video ko 99% accuracy se pakdega.</p>
 </div>
 
-<div class="shield">
-<h2>🌍 GLOBAL AI POLICE SHIELD: ACTIVE</h2>
-<p>Local to Global • Safety • Collaboration • Hope</p>
-<p style="margin-top:10px;color:#00ff88">✓ 12,482 Scams Blocked Today | ✓ Beed Node Secured</p>
+<div class="card">
+<div class="blue">🛡️ Family Shield</div>
+<p>Tere pure parivaar ka WhatsApp aur Instagram auto-protect.</p>
 </div>
 
-<div class="features">
-<div class="card"><h3>🚨 Scam Detector Pro Max</h3><p>Link, image, voice note — kuch bhi check karega aur 2 sec me batayega real hai ya fake.</p></div>
-<div class="card"><h3>👁️ Deepfake Police</h3><p>AI se bani photo/video ko 99% accuracy se pakdega.</p></div>
-<div class="card"><h3>🛡️ Family Shield</h3><p>Tere pure parivaar ka WhatsApp aur Instagram auto-protect.</p></div>
-<div class="card"><h3>🏆 Beed to World</h3><p>Beed se bana, duniya ke liye. 100% Anonymous, 100% Secure. No data selling.</p></div>
+<div class="card">
+<div class="blue">🏆 Beed to World</div>
+<p>Beed se bana, duniya ke liye. 100% Anonymous, 100% Secure. No data selling.</p>
 </div>
 
-<div id="demo" style="max-width:600px;margin:40px auto;padding:20px">
-<h2 style="text-align:center;margin-bottom:20px">Live Demo — Link Check Karo</h2>
-<input id="link" placeholder="Yaha koi suspicious link / message paste karo..." style="width:100%;padding:15px;border-radius:10px;border:1px solid #00d2ff;background:#0a1222;color:white">
-<button onclick="check()" class="btn btn-primary" style="width:100%;margin-top:15px">SCAN NOW</button>
-<p id="result" style="text-align:center;margin-top:20px;font-weight:bold"></p>
-</div>
+<h2 style="text-align:center;">Live Demo — Link Check Karo</h2>
+<input type="text" id="linkInput" placeholder="Yaha koi suspicious link / message paste karo...">
+<button class="btn" onclick="scanLink()">SCAN NOW</button>
+<div id="result"></div>
+<div id="warn" style="text-align:center;margin-top:10px;">⚠️ Pehle kuch paste karo bhai</div>
 
 <div class="footer">
 WORLD AI POLICE © 2026 | Built Anonymously from Beed, Maharashtra, India<br>
@@ -59,20 +43,23 @@ Privacy First • No Name • No Tracking • Only Protection
 </div>
 
 <script>
-function check(){
- let v=document.getElementById('link').value;
- let r=document.getElementById('result');
- if(!v){r.innerText='⚠️ Pehle kuch paste karo bhai';return}
- r.innerText='🔍 Scanning with Beed Node AI...';
- setTimeout(()=>{
-   if(v.includes('free')||v.includes('lottery')||v.includes('otp')||v.includes('http')){
-     r.innerText='🚨 ALERT: Ye Scam ho sakta hai! Beed Node ne block kiya. Click mat karna!';
-     r.style.color='#ff4444'
-   } else {
-     r.innerText='✅ Safe Lag Raha Hai — Beed Node ne check kiya';
-     r.style.color='#00ff88'
-   }
- },1500)
+function scanLink(){
+  let val = document.getElementById('linkInput').value.toLowerCase();
+  let res = document.getElementById('result');
+  let warn = document.getElementById('warn');
+  warn.style.display='none';
+  res.style.display='block';
+  if(!val){ res.innerHTML='⚠️ Pehle kuch paste karo bhai'; res.style.background='#333'; return; }
+  if(val.includes('lottery')||val.includes('prize')||val.includes('free money')||val.includes('http')&&val.length>30||val.includes('bit.ly')){
+    res.innerHTML='🚨 <b>HIGH RISK - SCAM HO SAKTA HAI!</b><br>Ye link Beed Node ne risky bataya hai. Click mat karna.';
+    res.style.background='#b71c1c';
+  } else if(val.includes('instagram')||val.includes('whatsapp')||val.includes('offer')){
+    res.innerHTML='⚠️ <b>MEDIUM RISK</b><br>Dhyan se check karo, official site se verify karo.';
+    res.style.background='#e65100';
+  } else {
+    res.innerHTML='✅ <b>SAFE LAG RAHA HAI</b><br>Beed AI Police ko ye link safe laga. Phir bhi savdhani rakho.';
+    res.style.background='#1b5e20';
+  }
 }
 </script>
 </body>
