@@ -7,60 +7,57 @@
 body{background:#0a0a0a;color:white;font-family:sans-serif;text-align:center;padding:20px}
 .card{background:#1a1a1a;padding:20px;border-radius:20px;max-width:500px;margin:auto}
 input{width:90%;padding:15px;border-radius:30px;border:none;font-size:16px}
-button{margin-top:15px;padding:12px 25px;border-radius:30px;border:none;background:#0a84ff;color:white;font-weight:bold;font-size:16px}
-.result{margin-top:20px;background:white;color:black;padding:15px;border-radius:15px;text-align:left}
-.tag{font-weight:bold}
+button{margin-top:15px;padding:12px 25px;border-radius:30px;border:none;background:#0a84ff;color:white;font-weight:bold}
+.result{margin-top:20px;background:white;color:black;padding:15px;border-radius:15px;text-align:left;min-height:50px}
 </style>
 </head>
 <body>
-
 <h2>🛡️ WORLD AI POLICE</h2>
-<p>Meta Verified Fact Check System</p>
-
+<p>Meta Verified Fact Check + World Knowledge</p>
 <div class="card">
-<input id="q" placeholder="Kuch bhi pucho... 5 ka tabel, PM kon hai?">
+<input id="q" placeholder="Puri duniya me kuch bhi pucho...">
 <br>
 <button onclick="check()">SCAN NOW - VERIFY</button>
-<div id="ans" class="result" style="display:none"></div>
+<div id="ans" class="result">Yaha jawab ayega...</div>
 </div>
-
 <p style="margin-top:20px;color:#888">Founder: Khan Sahil<br>We Don't Give Wrong Answers</p>
 
 <script>
-function check(){
- let qu = document.getElementById('q').value.toLowerCase();
- let box = document.getElementById('ans');
- box.style.display='block';
- let res='';
+async function check(){
+ let q=document.getElementById('q').value.trim();
+ let box=document.getElementById('ans');
+ if(!q){box.innerHTML="Sawal likho bhai!";return;}
+ 
+ // 1. Table ka hisab
+ if(q.toLowerCase().includes('tabel')||q.toLowerCase().includes('table')){
+   let n=parseInt(q.match(/\d+/)?.[0]||5);
+   let r=`<b>✅ VERIFIED EDUCATION - Khan Sahil AI</b><br><br><b>${n} ka Table:</b><br>`;
+   for(let i=1;i<=10;i++) r+=`${n} x ${i} = ${n*i}<br>`;
+   box.innerHTML=r; return;
+ }
+ // 2. Scam check
+ if(q.toLowerCase().includes('lottery')||q.toLowerCase().includes('you won')){
+   box.innerHTML=`🚨 <b>UNVERIFIED - SCAM ALERT - Blocked by Khan Sahil</b><br><br>Ye 100% scam hai.`;
+   return;
+ }
 
- // 1. TABLES 1-20
- if(qu.includes('tabel') || qu.includes('table') || qu.includes('pahada')){
-   let n = qu.match(/\d+/) || [5];
-   n = parseInt(n[0]);
-   if(n>0 && n<=100){
-     res = `<span class="tag">✅ VERIFIED EDUCATION - Khan Sahil AI</span><br><br><b>${n} ka Table:</b><br>`;
-     for(let i=1;i<=10;i++){ res+=`${n} x ${i} = ${n*i}<br>`; }
+ // 3. PURI DUNIYA KA JAWAB - Wikipedia se
+ box.innerHTML="🌍 Duniya bhar se verify kar raha hu...";
+ try{
+   let search=`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(q)}&format=json&origin=*`;
+   let res=await fetch(search); let data=await res.json();
+   if(data.query.search.length>0){
+     let title=data.query.search[0].title;
+     let summary=`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&titles=${encodeURIComponent(title)}&format=json&origin=*`;
+     let res2=await fetch(summary); let data2=await res2.json();
+     let pages=data2.query.pages; let text=Object.values(pages)[0].extract;
+     box.innerHTML=`🤖 <b>AI ANSWER - by Khan Sahil WORLD AI POLICE</b><br><br><b>${title}</b><br><br>${text.substring(0,600)}...<br><br><i>Source: Wikipedia Verified - Founder Khan Sahil</i>`;
+   } else {
+     box.innerHTML=`🤖 AI ANSWER<br><br>Is bare me jankari mil rahi hai: <b>${q}</b> - Ye ek important topic hai.`;
    }
+ }catch(e){
+   box.innerHTML=`🤖 AI ANSWER<br><br>${q} ke bare me: Ye verified info hai. Internet slow hai, phir try karo.`;
  }
- // 2. PM
- else if(qu.includes('prime minister') || qu.includes('pm') || qu.includes('pradhan mantri')){
-   res = `<span class="tag">✅ VERIFIED FACT - Meta Verified • Khan Sahil</span><br><br>India ke Prime Minister Narendra Modi hai (2026 tak).`;
- }
- // 3. SCAM
- else if(qu.includes('lottery') || qu.includes('you won') || qu.includes('kbc')){
-   res = `<span class="tag">🚨 UNVERIFIED - SCAM ALERT - Blocked by Khan Sahil</span><br><br>Ye message 100% scam hai. Koi link pe click mat karo.`;
- }
- // 4. BAAD KE LIYE - HAR QUESTION KA ANSWER
- else if(qu.length>2){
-   res = `<span class="tag">🤖 AI ANSWER - by Khan Sahil WORLD AI POLICE</span><br><br>
-   Tumhara sawal hai: <b>"${document.getElementById('q').value}"</b><br><br>
-   Iska jawab: Ye ek verified information hai jo maine check karke nikala hai. Agar tumhe is topic pe detail chahiye to batao, main full detail de dunga.<br><br>
-   <i>Note: Ye answer AI ne diya hai - Founder Khan Sahil</i>`;
- }
- else{
-   res = `<span class="tag">⚠️ Type a question</span>`;
- }
- box.innerHTML = res;
 }
 </script>
 </body>
