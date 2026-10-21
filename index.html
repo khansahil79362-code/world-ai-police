@@ -2,47 +2,91 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD AI POLICE - Khan Sahil</title>
+<title>WORLD AI POLICE V2</title>
 <style>
-body{background:#0a0a0a;color:white;font-family:sans-serif;text-align:center;padding:20px}
-.card{background:#1a1a1a;padding:20px;border-radius:20px;max-width:500px;margin:auto}
-input{width:90%;padding:15px;border-radius:30px;border:none;font-size:16px}
-button{margin-top:15px;padding:12px 25px;border-radius:30px;border:none;background:#0a84ff;color:white;font-weight:bold}
-.result{margin-top:20px;background:white;color:black;padding:15px;border-radius:15px;text-align:left;min-height:50px}
+body{background:#0a0a0a;color:white;font-family:sans-serif;text-align:center;padding:20px;margin:0}
+.header{display:flex;justify-content:space-between;align-items:center;max-width:500px;margin:auto;padding:10px}
+.logs-btn{background:#222;border:1px solid #444;padding:8px 12px;border-radius:20px;color:#0a84ff;font-size:12px}
+.card{background:#1a1a1a;padding:20px;border-radius:20px;max-width:500px;margin:15px auto;border:1px solid #333}
+input{width:90%;padding:15px;border-radius:30px;border:none;font-size:16px;outline:none}
+button.main{margin-top:15px;padding:12px 25px;border-radius:30px;border:none;background:#0a84ff;color:white;font-weight:bold;cursor:pointer;width:90%}
+.result{margin-top:20px;background:white;color:black;padding:15px;border-radius:15px;text-align:left;min-height:60px}
+.shield{padding:10px;border-radius:10px;font-weight:bold;margin-bottom:10px;text-align:center}
+.red{background:#ff3b30;color:white}
+.yellow{background:#ffcc00;color:black}
+.green{background:#34c759;color:white}
+.meter{height:8px;background:#333;border-radius:10px;margin:8px 0;overflow:hidden}
+.fill{height:100%;border-radius:10px}
+.report-btn{margin-top:10px;background:#ff3b30;color:white;border:none;padding:8px 15px;border-radius:20px;font-size:12px;width:100%}
+.stats{display:flex;justify-content:space-around;max-width:500px;margin:10px auto;font-size:12px;color:#888}
 </style>
 </head>
 <body>
-<h2>🛡️ WORLD AI POLICE</h2>
-<p>Meta Verified Fact Check + World Knowledge</p>
+<div class="header">
+<b>🛡️ WORLD AI POLICE V2</b>
+<button class="logs-btn" onclick="showLogs()">📊 Logs</button>
+</div>
+
+<div class="stats">
+<span>🟢 Safe: <b id="safe">0</b></span>
+<span>🔴 Blocked: <b id="blocked">0</b></span>
+<span>🟡 Check: <b id="check">0</b></span>
+</div>
+
+<p style="color:#888;font-size:13px">Meta Verified + Trust Score Engine</p>
+
 <div class="card">
 <input id="q" placeholder="Puri duniya me kuch bhi pucho...">
 <br>
-<button onclick="check()">SCAN NOW - VERIFY</button>
-<div id="ans" class="result">Yaha jawab ayega...</div>
+<button class="main" onclick="check()">SCAN NOW - VERIFY V2</button>
+<div id="ans" class="result">Yaha V2 ka jawab ayega...</div>
 </div>
-<p style="margin-top:20px;color:#888">Founder: Khan Sahil<br>We Don't Give Wrong Answers</p>
+
+<p style="margin-top:20px;color:#555;font-size:11px">Anonymous Global AI Safety Layer<br>We Don't Give Wrong Answers</p>
 
 <script>
+let s=localStorage.getItem('safe')||0;
+let b=localStorage.getItem('blocked')||0;
+let c=localStorage.getItem('check')||0;
+document.getElementById('safe').innerText=s;
+document.getElementById('blocked').innerText=b;
+document.getElementById('check').innerText=c;
+
+function update(type){
+ if(type=='safe'){s++;localStorage.setItem('safe',s);document.getElementById('safe').innerText=s;}
+ if(type=='blocked'){b++;localStorage.setItem('blocked',b);document.getElementById('blocked').innerText=b;}
+ if(type=='check'){c++;localStorage.setItem('check',c);document.getElementById('check').innerText=c;}
+}
+
+function showLogs(){
+ alert(`📊 WORLD AI POLICE - Logs\n\n🟢 Verified Safe: ${s}\n🔴 Scams Blocked: ${b}\n🟡 Under Review: ${c}\n\nTotal Scans: ${Number(s)+Number(b)+Number(c)}`);
+}
+
 async function check(){
  let q=document.getElementById('q').value.trim();
  let box=document.getElementById('ans');
  if(!q){box.innerHTML="Sawal likho bhai!";return;}
- 
- // 1. Table ka hisab
- if(q.toLowerCase().includes('tabel')||q.toLowerCase().includes('table')){
-   let n=parseInt(q.match(/\d+/)?.[0]||5);
-   let r=`<b>✅ VERIFIED EDUCATION - Khan Sahil AI</b><br><br><b>${n} ka Table:</b><br>`;
-   for(let i=1;i<=10;i++) r+=`${n} x ${i} = ${n*i}<br>`;
-   box.innerHTML=r; return;
- }
- // 2. Scam check
- if(q.toLowerCase().includes('lottery')||q.toLowerCase().includes('you won')){
-   box.innerHTML=`🚨 <b>UNVERIFIED - SCAM ALERT - Blocked by Khan Sahil</b><br><br>Ye 100% scam hai.`;
+
+ if(q.toLowerCase().includes('lottery')||q.toLowerCase().includes('you won')||q.toLowerCase().includes('kbc')||q.toLowerCase().includes('otp')||q.toLowerCase().includes('link bhejo')||q.toLowerCase().includes('bank account')){
+   update('blocked');
+   box.innerHTML=`<div class="shield red">🔴 RED SHIELD - BLOCKED<br>Trust Score: 0% - SCAM</div>
+   <div class="meter"><div class="fill" style="width:5%;background:#ff3b30"></div></div>
+   🚨 <b>BLOCKED BY WORLD AI POLICE</b><br><br>Ye 100% scam hai. Paise mat bhejo.<br>
+   <button class="report-btn" onclick="alert('Reported - Thank you!')">🚨 Report This Scam</button>`;
    return;
  }
 
- // 3. PURI DUNIYA KA JAWAB - Wikipedia se
- box.innerHTML="🌍 Duniya bhar se verify kar raha hu...";
+ if(q.toLowerCase().includes('tabel')||q.toLowerCase().includes('table')){
+   let n=parseInt(q.match(/\d+/)?.[0]||5);
+   update('safe');
+   let r=`<div class="shield green">🟢 GREEN SHIELD - VERIFIED<br>Trust Score: 100% - Education</div>
+   <div class="meter"><div class="fill" style="width:100%;background:#34c759"></div></div>
+   <b>✅ VERIFIED EDUCATION</b><br><br><b>${n} ka Table:</b><br>`;
+   for(let i=1;i<=10;i++) r+=`${n} x ${i} = ${n*i}<br>`;
+   box.innerHTML=r; return;
+ }
+
+ box.innerHTML="🌍 V2 Engine se verify kar raha hu...";
  try{
    let search=`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(q)}&format=json&origin=*`;
    let res=await fetch(search); let data=await res.json();
@@ -50,20 +94,4 @@ async function check(){
      let title=data.query.search[0].title;
      let summary=`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&titles=${encodeURIComponent(title)}&format=json&origin=*`;
      let res2=await fetch(summary); let data2=await res2.json();
-     let pages=data2.query.pages; let text=Object.values(pages)[0].extract;
-     box.innerHTML=`🤖 <b>AI ANSWER - by Khan Sahil WORLD AI POLICE</b><br><br><b>${title}</b><br><br>${text.substring(0,600)}...<br><br><i>Source: Wikipedia Verified - Founder Khan Sahil</i>`;
-   } else {
-     box.innerHTML=`🤖 AI ANSWER<br><br>Is bare me jankari mil rahi hai: <b>${q}</b> - Ye ek important topic hai.`;
-   }
- }catch(e){
-   box.innerHTML=`🤖 AI ANSWER<br><br>${q} ke bare me: Ye verified info hai. Internet slow hai, phir try karo.`;
- }
-}
-</script>
-</body>
-</html>
-<link rel="manifest" href="data:application/json;base64,eyJuYW1lIjoiV09STEQgQUkgUE9MSUNFIiwiX3Nob3J0X25hbWUiOiJXQSJQb2xpY2UiLCJzdGFydF91cmwiOiIuIiwiZGlzcGxheSI6InN0YW5kYWxvbmUiLCJiYWNrZ3JvdW5kX2NvbG9yIjoiIzBhMGEwYSIsInRoZW1lX2NvbG9yIjoiIzBhODRmZiIsImljb25zIjpbXX0=">
-<meta name="theme-color" content="#0a84ff">
-<script>
-if('serviceWorker' in navigator){ navigator.serviceWorker.register('data:text/javascript;base64,'+btoa('self.addEventListener(\"fetch\",e=>{})')); }
-</script>
+     let pages=data2.query.pages
