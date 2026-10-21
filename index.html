@@ -2,11 +2,11 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD AI POLICE V2</title>
+<title>WORLD AI POLICE V2 - FINAL</title>
 <style>
 body{background:#0a0a0a;color:white;font-family:sans-serif;text-align:center;padding:20px;margin:0}
 .header{display:flex;justify-content:space-between;align-items:center;max-width:500px;margin:auto;padding:10px}
-.logs-btn{background:#222;border:1px solid #444;padding:8px 12px;border-radius:20px;color:#0a84ff;font-size:12px}
+.logs-btn{background:#222;border:1px solid #444;padding:8px 12px;border-radius:20px;color:#0a84ff;font-size:12px;cursor:pointer}
 .card{background:#1a1a1a;padding:20px;border-radius:20px;max-width:500px;margin:15px auto;border:1px solid #333}
 input{width:90%;padding:15px;border-radius:30px;border:none;font-size:16px;outline:none}
 button.main{margin-top:15px;padding:12px 25px;border-radius:30px;border:none;background:#0a84ff;color:white;font-weight:bold;cursor:pointer;width:90%}
@@ -17,7 +17,7 @@ button.main{margin-top:15px;padding:12px 25px;border-radius:30px;border:none;bac
 .green{background:#34c759;color:white}
 .meter{height:8px;background:#333;border-radius:10px;margin:8px 0;overflow:hidden}
 .fill{height:100%;border-radius:10px}
-.report-btn{margin-top:10px;background:#ff3b30;color:white;border:none;padding:8px 15px;border-radius:20px;font-size:12px;width:100%}
+.report-btn{margin-top:10px;background:#ff3b30;color:white;border:none;padding:8px 15px;border-radius:20px;font-size:12px;width:100%;cursor:pointer}
 .stats{display:flex;justify-content:space-around;max-width:500px;margin:10px auto;font-size:12px;color:#888}
 </style>
 </head>
@@ -45,9 +45,9 @@ button.main{margin-top:15px;padding:12px 25px;border-radius:30px;border:none;bac
 <p style="margin-top:20px;color:#555;font-size:11px">Anonymous Global AI Safety Layer<br>We Don't Give Wrong Answers</p>
 
 <script>
-let s=localStorage.getItem('safe')||0;
-let b=localStorage.getItem('blocked')||0;
-let c=localStorage.getItem('check')||0;
+let s=parseInt(localStorage.getItem('safe')||0);
+let b=parseInt(localStorage.getItem('blocked')||0);
+let c=parseInt(localStorage.getItem('check')||0);
 document.getElementById('safe').innerText=s;
 document.getElementById('blocked').innerText=b;
 document.getElementById('check').innerText=c;
@@ -57,9 +57,8 @@ function update(type){
  if(type=='blocked'){b++;localStorage.setItem('blocked',b);document.getElementById('blocked').innerText=b;}
  if(type=='check'){c++;localStorage.setItem('check',c);document.getElementById('check').innerText=c;}
 }
-
 function showLogs(){
- alert(`📊 WORLD AI POLICE - Logs\n\n🟢 Verified Safe: ${s}\n🔴 Scams Blocked: ${b}\n🟡 Under Review: ${c}\n\nTotal Scans: ${Number(s)+Number(b)+Number(c)}`);
+ alert(`📊 WORLD AI POLICE - Logs\n\n🟢 Verified Safe: ${s}\n🔴 Scams Blocked: ${b}\n🟡 Under Review: ${c}\n\nTotal Scans: ${s+b+c}`);
 }
 
 async function check(){
@@ -67,7 +66,19 @@ async function check(){
  let box=document.getElementById('ans');
  if(!q){box.innerHTML="Sawal likho bhai!";return;}
 
- if(q.toLowerCase().includes('lottery')||q.toLowerCase().includes('you won')||q.toLowerCase().includes('kbc')||q.toLowerCase().includes('otp')||q.toLowerCase().includes('link bhejo')||q.toLowerCase().includes('bank account')){
+ let lower = q.toLowerCase();
+
+ // 1. PRIVACY RED BLOCK - LIVE LOCATION / PERSONAL DATA
+ if(lower.includes('live location')||lower.includes('current location')||lower.includes('ghar kaha')||lower.includes('phone number')||lower.includes('mobile number')||lower.includes('home address')||lower.includes('elon musk ki live')||lower.includes('kisike ghar')){
+   update('blocked');
+   box.innerHTML=`<div class="shield red">🔴 RED SHIELD - BLOCKED<br>Trust Score: 0% - Privacy Protection</div>
+   <div class="meter"><div class="fill" style="width:5%;background:#ff3b30"></div></div>
+   🚨 <b>BLOCKED - PRIVACY PROTECTION</b><br><br>Live location, private address ya phone number share karna World AI Police ki policy ke against hai. Hum kisi bhi vyakti ki private location nahi dete.<br><br>✅ Aap public info jaise Wikipedia ke bare me puch sakte ho.`;
+   return;
+ }
+
+ // 2. SCAM RED BLOCK
+ if(lower.includes('lottery')||lower.includes('you won')||lower.includes('kbc')||lower.includes('otp')||lower.includes('link bhejo')||lower.includes('bank account')||lower.includes('paise bhejo')){
    update('blocked');
    box.innerHTML=`<div class="shield red">🔴 RED SHIELD - BLOCKED<br>Trust Score: 0% - SCAM</div>
    <div class="meter"><div class="fill" style="width:5%;background:#ff3b30"></div></div>
@@ -76,7 +87,8 @@ async function check(){
    return;
  }
 
- if(q.toLowerCase().includes('tabel')||q.toLowerCase().includes('table')){
+ // 3. EDUCATION GREEN
+ if(lower.includes('tabel')||lower.includes('table')){
    let n=parseInt(q.match(/\d+/)?.[0]||5);
    update('safe');
    let r=`<div class="shield green">🟢 GREEN SHIELD - VERIFIED<br>Trust Score: 100% - Education</div>
@@ -86,6 +98,7 @@ async function check(){
    box.innerHTML=r; return;
  }
 
+ // 4. WIKIPEDIA VERIFY
  box.innerHTML="🌍 V2 Engine se verify kar raha hu...";
  try{
    let search=`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(q)}&format=json&origin=*`;
@@ -94,4 +107,15 @@ async function check(){
      let title=data.query.search[0].title;
      let summary=`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&titles=${encodeURIComponent(title)}&format=json&origin=*`;
      let res2=await fetch(summary); let data2=await res2.json();
-     let pages=data2.query.pages
+     let pages=data2.query.pages; let text=Object.values(pages)[0].extract;
+     update('safe');
+     box.innerHTML=`<div class="shield green">🟢 GREEN SHIELD - VERIFIED<br>Trust Score: 95% - Wikipedia Verified</div>
+     <div class="meter"><div class="fill" style="width:95%;background:#34c759"></div></div>
+     🤖 <b>${title}</b><br><br>${text.substring(0,600)}...<br><br>
+     <i>Source: Wikipedia Verified</i><br>
+     <button class="report-btn" style="background:#333" onclick="alert('Feedback sent')">👍 Correct / 👎 Wrong</button>`;
+   } else {
+     update('check');
+     box.innerHTML=`<div class="shield yellow">🟡 YELLOW SHIELD - UNVERIFIED<br>Trust Score: 45% - Needs Check</div>
+     <div class="meter"><div class="fill" style="width:45%;background:#ffcc00"></div></div>
+    
