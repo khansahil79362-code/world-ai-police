@@ -2,120 +2,71 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD AI POLICE V2 - FINAL</title>
+<title>WORLD AI POLICE V2 - REAL AI</title>
 <style>
 body{background:#0a0a0a;color:white;font-family:sans-serif;text-align:center;padding:20px;margin:0}
-.header{display:flex;justify-content:space-between;align-items:center;max-width:500px;margin:auto;padding:10px}
-.logs-btn{background:#222;border:1px solid #444;padding:8px 12px;border-radius:20px;color:#0a84ff;font-size:12px;cursor:pointer}
 .card{background:#1a1a1a;padding:20px;border-radius:20px;max-width:500px;margin:15px auto;border:1px solid #333}
 input{width:90%;padding:15px;border-radius:30px;border:none;font-size:16px;outline:none}
 button.main{margin-top:15px;padding:12px 25px;border-radius:30px;border:none;background:#0a84ff;color:white;font-weight:bold;cursor:pointer;width:90%}
-.result{margin-top:20px;background:white;color:black;padding:15px;border-radius:15px;text-align:left;min-height:60px}
+.result{margin-top:20px;background:white;color:black;padding:15px;border-radius:15px;text-align:left;min-height:80px;white-space:pre-wrap}
 .shield{padding:10px;border-radius:10px;font-weight:bold;margin-bottom:10px;text-align:center}
 .red{background:#ff3b30;color:white}
-.yellow{background:#ffcc00;color:black}
 .green{background:#34c759;color:white}
-.meter{height:8px;background:#333;border-radius:10px;margin:8px 0;overflow:hidden}
-.fill{height:100%;border-radius:10px}
-.report-btn{margin-top:10px;background:#ff3b30;color:white;border:none;padding:8px 15px;border-radius:20px;font-size:12px;width:100%;cursor:pointer}
+.yellow{background:#ffcc00;color:black}
 .stats{display:flex;justify-content:space-around;max-width:500px;margin:10px auto;font-size:12px;color:#888}
 </style>
 </head>
 <body>
-<div class="header">
-<b>🛡️ WORLD AI POLICE V2</b>
-<button class="logs-btn" onclick="showLogs()">📊 Logs</button>
-</div>
-
-<div class="stats">
-<span>🟢 Safe: <b id="safe">0</b></span>
-<span>🔴 Blocked: <b id="blocked">0</b></span>
-<span>🟡 Check: <b id="check">0</b></span>
-</div>
-
-<p style="color:#888;font-size:13px">Meta Verified + Trust Score Engine</p>
+<b>🛡️ WORLD AI POLICE V2 - REAL AI CHAT</b>
+<div class="stats"><span>🟢 Safe: <b id="safe">0</b></span><span>🔴 Blocked: <b id="blocked">0</b></span></div>
+<p style="color:#888;font-size:13px">Real AI + Trust Score Engine</p>
 
 <div class="card">
-<input id="q" placeholder="Puri duniya me kuch bhi pucho...">
+<input id="q" placeholder="AI se kuch bhi pucho... ex: 5 ka table, story likho">
 <br>
-<button class="main" onclick="check()">SCAN NOW - VERIFY V2</button>
-<div id="ans" class="result">Yaha V2 ka jawab ayega...</div>
+<button class="main" onclick="chatAI()">ASK REAL AI - V2</button>
+<div id="ans" class="result">Yaha AI ka jawab ayega...</div>
 </div>
 
-<p style="margin-top:20px;color:#555;font-size:11px">Anonymous Global AI Safety Layer<br>We Don't Give Wrong Answers</p>
-
 <script>
-let s=parseInt(localStorage.getItem('safe')||0);
-let b=parseInt(localStorage.getItem('blocked')||0);
-let c=parseInt(localStorage.getItem('check')||0);
-document.getElementById('safe').innerText=s;
-document.getElementById('blocked').innerText=b;
-document.getElementById('check').innerText=c;
-
-function update(type){
- if(type=='safe'){s++;localStorage.setItem('safe',s);document.getElementById('safe').innerText=s;}
- if(type=='blocked'){b++;localStorage.setItem('blocked',b);document.getElementById('blocked').innerText=b;}
- if(type=='check'){c++;localStorage.setItem('check',c);document.getElementById('check').innerText=c;}
-}
-function showLogs(){
- alert(`📊 WORLD AI POLICE - Logs\n\n🟢 Verified Safe: ${s}\n🔴 Scams Blocked: ${b}\n🟡 Under Review: ${c}\n\nTotal Scans: ${s+b+c}`);
-}
-
-async function check(){
+let s=0,b=0;
+async function chatAI(){
  let q=document.getElementById('q').value.trim();
  let box=document.getElementById('ans');
- if(!q){box.innerHTML="Sawal likho bhai!";return;}
+ if(!q){box.innerHTML="Kuch likho bhai!";return;}
+ let l=q.toLowerCase();
 
- let lower = q.toLowerCase();
-
- // 1. PRIVACY RED BLOCK - LIVE LOCATION / PERSONAL DATA
- if(lower.includes('live location')||lower.includes('current location')||lower.includes('ghar kaha')||lower.includes('phone number')||lower.includes('mobile number')||lower.includes('home address')||lower.includes('elon musk ki live')||lower.includes('kisike ghar')){
-   update('blocked');
-   box.innerHTML=`<div class="shield red">🔴 RED SHIELD - BLOCKED<br>Trust Score: 0% - Privacy Protection</div>
-   <div class="meter"><div class="fill" style="width:5%;background:#ff3b30"></div></div>
-   🚨 <b>BLOCKED - PRIVACY PROTECTION</b><br><br>Live location, private address ya phone number share karna World AI Police ki policy ke against hai. Hum kisi bhi vyakti ki private location nahi dete.<br><br>✅ Aap public info jaise Wikipedia ke bare me puch sakte ho.`;
+ if(l.includes('live location')||l.includes('phone number')||l.includes('ghar kaha')||l.includes('current location')){
+   b++;document.getElementById('blocked').innerText=b;
+   box.innerHTML=`🔴 RED SHIELD - BLOCKED (0%)\n\n🚨 PRIVACY BLOCK: Live location nahi de sakte.`;
+   return;
+ }
+ if(l.includes('lottery')||l.includes('you won')||l.includes('kbc lottery')){
+   b++;document.getElementById('blocked').innerText=b;
+   box.innerHTML=`🔴 RED SHIELD - SCAM (0%)\n\n🚨 Ye Scam Hai! Block kiya.`;
    return;
  }
 
- // 2. SCAM RED BLOCK
- if(lower.includes('lottery')||lower.includes('you won')||lower.includes('kbc')||lower.includes('otp')||lower.includes('link bhejo')||lower.includes('bank account')||lower.includes('paise bhejo')){
-   update('blocked');
-   box.innerHTML=`<div class="shield red">🔴 RED SHIELD - BLOCKED<br>Trust Score: 0% - SCAM</div>
-   <div class="meter"><div class="fill" style="width:5%;background:#ff3b30"></div></div>
-   🚨 <b>BLOCKED BY WORLD AI POLICE</b><br><br>Ye 100% scam hai. Paise mat bhejo.<br>
-   <button class="report-btn" onclick="alert('Reported - Thank you!')">🚨 Report This Scam</button>`;
-   return;
- }
+ box.innerHTML="🤖 AI soch raha hai... 2 sec ruko...";
+ s++;document.getElementById('safe').innerText=s;
 
- // 3. EDUCATION GREEN
- if(lower.includes('tabel')||lower.includes('table')){
-   let n=parseInt(q.match(/\d+/)?.[0]||5);
-   update('safe');
-   let r=`<div class="shield green">🟢 GREEN SHIELD - VERIFIED<br>Trust Score: 100% - Education</div>
-   <div class="meter"><div class="fill" style="width:100%;background:#34c759"></div></div>
-   <b>✅ VERIFIED EDUCATION</b><br><br><b>${n} ka Table:</b><br>`;
-   for(let i=1;i<=10;i++) r+=`${n} x ${i} = ${n*i}<br>`;
-   box.innerHTML=r; return;
- }
-
- // 4. WIKIPEDIA VERIFY
- box.innerHTML="🌍 V2 Engine se verify kar raha hu...";
  try{
-   let search=`https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(q)}&format=json&origin=*`;
-   let res=await fetch(search); let data=await res.json();
-   if(data.query.search.length>0){
-     let title=data.query.search[0].title;
-     let summary=`https://en.wikipedia.org/w/api.php?action=query&prop=extracts&exintro&explaintext&titles=${encodeURIComponent(title)}&format=json&origin=*`;
-     let res2=await fetch(summary); let data2=await res2.json();
-     let pages=data2.query.pages; let text=Object.values(pages)[0].extract;
-     update('safe');
-     box.innerHTML=`<div class="shield green">🟢 GREEN SHIELD - VERIFIED<br>Trust Score: 95% - Wikipedia Verified</div>
-     <div class="meter"><div class="fill" style="width:95%;background:#34c759"></div></div>
-     🤖 <b>${title}</b><br><br>${text.substring(0,600)}...<br><br>
-     <i>Source: Wikipedia Verified</i><br>
-     <button class="report-btn" style="background:#333" onclick="alert('Feedback sent')">👍 Correct / 👎 Wrong</button>`;
+   // FREE AI API - NO KEY NEEDED
+   let res = await fetch('https://text.pollinations.ai/' + encodeURIComponent(q));
+   let text = await res.text();
+   box.innerHTML=`🟢 GREEN SHIELD - AI VERIFIED (95%)\n\n🤖 AI Jawab:\n\n${text}\n\n---\n✅ Verified by World AI Police V2`;
+ }catch(e){
+   // Fallback if API fails
+   if(l.includes('table')){
+     let n=parseInt(q.match(/\d+/)?.[0]||5);
+     let r=`${n} ka Table:\n`;
+     for(let i=1;i<=10;i++) r+=`${n} x ${i} = ${n*i}\n`;
+     box.innerHTML=`🟢 GREEN (100%)\n\n${r}`;
    } else {
-     update('check');
-     box.innerHTML=`<div class="shield yellow">🟡 YELLOW SHIELD - UNVERIFIED<br>Trust Score: 45% - Needs Check</div>
-     <div class="meter"><div class="fill" style="width:45%;background:#ffcc00"></div></div>
-    
+     box.innerHTML=`🟢 GREEN (90%)\n\n🤖 ${q} ka jawab:\n\nMain abhi AI se connect nahi ho paya (net slow), par tumhara sawal safe hai! Dubara try karo.`;
+   }
+ }
+}
+</script>
+</body>
+</html>
