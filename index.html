@@ -3,122 +3,71 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD AI POLICE V3 - VOICE AI</title>
+<title>WORLD AI POLICE V3 - By BADY</title>
+<meta name="description" content="World AI Police V3 - Real AI by BADY Beed. English typing, Hindi voice.">
+<meta name="author" content="BADY - Beed">
 <style>
 body{background:#0a0a0a;color:white;font-family:sans-serif;text-align:center;padding:15px;margin:0}
 .card{background:#1a1a1a;padding:20px;border-radius:20px;max-width:500px;margin:15px auto;border:1px solid #333}
-.input-row{display:flex;gap:0;justify-content:center}
+.input-row{display:flex}
 input{width:80%;padding:15px;border-radius:30px 0 0 30px;border:none;font-size:16px;outline:none}
 .mic{width:20%;padding:15px;border-radius:0 30px 30px 0;border:none;background:#222;color:white;font-size:20px;cursor:pointer}
-button.main{margin-top:12px;padding:12px 15px;border-radius:30px;border:none;background:#0a84ff;color:white;font-weight:bold;cursor:pointer;width:48%;font-size:14px}
-button.voice{margin-top:12px;padding:12px 15px;border-radius:30px;border:none;background:#34c759;color:white;font-weight:bold;cursor:pointer;width:48%;font-size:14px}
-.result{margin-top:15px;background:white;color:black;padding:15px;border-radius:15px;text-align:left;min-height:100px;white-space:pre-wrap;font-size:14px}
+button.main{padding:12px 15px;border-radius:30px;border:none;background:#0a84ff;color:white;font-weight:bold;width:48%;margin:5px;cursor:pointer}
+button.voice{padding:12px 15px;border-radius:30px;border:none;background:#34c759;color:white;font-weight:bold;width:48%;margin:5px;cursor:pointer}
+.result{margin-top:15px;background:white;color:black;padding:15px;border-radius:15px;text-align:left;min-height:100px;white-space:pre-wrap}
 .red{background:#ff3b30;color:white;padding:10px;border-radius:10px;text-align:center;font-weight:bold;margin-bottom:10px}
 .green{background:#34c759;color:white;padding:10px;border-radius:10px;text-align:center;font-weight:bold;margin-bottom:10px}
-.stats{display:flex;justify-content:space-around;max-width:500px;margin:10px auto;font-size:12px;color:#888}
 </style>
 </head>
 <body>
 
 <b>🛡️ WORLD AI POLICE V3</b><br>
-<span style="color:#0a84ff;font-size:12px">VOICE + REAL AI + TRUST SCORE</span>
-
-<div class="stats">
-<span>🟢 Safe: <b id="safe">0</b></span>
-<span>🔴 Blocked: <b id="blocked">0</b></span>
-</div>
+<span style="color:#0a84ff;font-size:12px">ENGLISH TYPE + HINDI VOICE - FINAL</span>
+<div style="margin:10px;color:#888;font-size:11px">Made by BADY from Beed</div>
 
 <div class="card">
 <div class="input-row">
-<input id="q" placeholder="Bolo ya likho... ex: 5 ka table">
+<input id="q" placeholder="Type in English... ex: elon musk kaun hai">
 <button class="mic" onclick="startVoice()">🎤</button>
 </div>
-
-<button class="main" onclick="chatAI()">ASK AI - V3</button>
+<button class="main" onclick="chatAI()">ASK AI</button>
 <button class="voice" onclick="speakLast()">🔊 SUNO</button>
-
-<div id="ans" class="result">🎤 Mic dabao aur bolo...
-
-Try karo:
-- "Elon Musk kaun hai"
-- "5 ka table batao"
-- "Ek kahani sunao"
-
-⚠️ Live location / phone number = Auto Block</div>
+<div id="ans" class="result">🎤 Mic dabao... English me bolo: "elon musk kaun hai"</div>
 </div>
 
-<p style="color:#555;font-size:10px">Made by BADY from Beed - World AI Police</p>
-
 <script>
-let s=0,b=0,lastAnswer="";
-
-function updateSafe(){s++;document.getElementById('safe').innerText=s;}
-function updateBlock(){b++;document.getElementById('blocked').innerText=b;}
-
+let lastAnswer="";
 function startVoice(){
- let Speech = window.SpeechRecognition || window.webkitSpeechRecognition;
- if(!Speech){alert("Ye browser voice support nahi karta, Chrome use karo bady!");return;}
- let r = new Speech();
- r.lang='hi-IN';
+ let R=window.SpeechRecognition||window.webkitSpeechRecognition;
+ if(!R){alert("Chrome use kar bady");return;}
+ let r=new R(); 
+ r.lang='en-IN'; // ENGLISH TYPING HOGA
  r.start();
- document.getElementById('ans').innerHTML="🎤 Sun raha hu... bolo bady...";
- r.onresult = e => {
-   document.getElementById('q').value = e.results[0][0].transcript;
-   chatAI();
- };
- r.onerror = () => alert("Mic Allow karo bady!");
+ document.getElementById('ans').innerHTML="🎤 Sun raha hu...";
+ r.onresult=e=>{document.getElementById('q').value=e.results[0][0].transcript;chatAI();}
 }
-
 function speakLast(){
- if(!lastAnswer){alert("Pehle kuch pucho bady!");return;}
- speechSynthesis.cancel();
- let u = new SpeechSynthesisUtterance(lastAnswer);
- u.lang='hi-IN'; u.rate=0.9; u.pitch=1;
+ if(!lastAnswer)return; speechSynthesis.cancel();
+ let u=new SpeechSynthesisUtterance(lastAnswer); 
+ u.lang='hi-IN'; // BOLNA HINDI ME
+ u.rate=0.9; 
  speechSynthesis.speak(u);
 }
-
 async function chatAI(){
- let q=document.getElementById('q').value.trim();
- let box=document.getElementById('ans');
- if(!q){box.innerHTML="❗ Pehle kuch likho ya bolo bady!";return;}
+ let q=document.getElementById('q').value.trim(), box=document.getElementById('ans');
+ if(!q){box.innerHTML="Kuch likho bady!";return;}
  let l=q.toLowerCase();
-
- if(l.includes('live location')||l.includes('phone number')||l.includes('ghar kaha')||l.includes('current location')||l.includes('address de')){
-   updateBlock();
-   lastAnswer="Privacy protection. Live location share nahi kar sakte. Ye World AI Police ne block kiya hai.";
-   box.innerHTML=`<div class="red">🔴 RED SHIELD - BLOCKED (0%) - PRIVACY</div>\n🚨 ${lastAnswer}`;
+ if(l.includes('live location')||l.includes('phone number')||l.includes('फोन')||l.includes('नंबर')||l.includes('मोबाइल')){
+   lastAnswer="Privacy block. Phone number aur live location share nahi kar sakte."; 
+   box.innerHTML=`<div class="red">🔴 RED SHIELD - BLOCKED</div>\n${lastAnswer}`; 
    speakLast(); return;
  }
- if(l.includes('lottery')||l.includes('you won')||l.includes('kbc lottery')||l.includes('otp bata')){
-   updateBlock();
-   lastAnswer="Ye scam hai. World AI Police ne block kiya hai.";
-   box.innerHTML=`<div class="red">🔴 RED SHIELD - SCAM BLOCKED (0%)</div>\n🚨 ${lastAnswer}`;
-   speakLast(); return;
- }
-
- box.innerHTML="🤖 AI soch raha hai... 2 sec...";
- updateSafe();
-
+ box.innerHTML="🤖 AI soch raha hai...";
  try{
-   let res = await fetch('https://text.pollinations.ai/' + encodeURIComponent(q + " - jawab hindi me short me do"));
-   let text = await res.text();
-   lastAnswer=text;
-   box.innerHTML=`<div class="green">🟢 GREEN SHIELD - AI VERIFIED (95%)</div>\n🤖 AI Jawab:\n\n${text}\n\n---\n✅ Verified by WORLD AI POLICE V3`;
-   speakLast();
- }catch(e){
-   if(l.includes('table')){
-     let n=parseInt(q.match(/\d+/)?.[0]||5);
-     let r=`${n} ka Table:\n`;
-     for(let i=1;i<=10;i++) r+=`${n} x ${i} = ${n*i}\n`;
-     lastAnswer=r;
-     box.innerHTML=`<div class="green">🟢 GREEN - 100%</div>\n${r}`;
-     speakLast();
-   } else {
-     lastAnswer="Net slow hai, dubara try karo bady.";
-     box.innerHTML=`🟢 GREEN - 90%\n${lastAnswer}`;
-     speakLast();
-   }
- }
+  let res=await fetch('https://text.pollinations.ai/'+encodeURIComponent(q+" answer in hindi short"));
+  let t=await res.text(); lastAnswer=t;
+  box.innerHTML=`<div class="green">🟢 GREEN SHIELD - VERIFIED 95%</div>\n${t}`; speakLast();
+ }catch{box.innerHTML="Net slow, fir try kar bady";}
 }
 </script>
 </body>
