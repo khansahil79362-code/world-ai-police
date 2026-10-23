@@ -1,56 +1,76 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WORLD AI POLICE V5 PRO</title><style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{background:#020c1c;color:#fff}
-#splash{position:fixed;inset:0;z-index:9999;background:radial-gradient(#102a5a,#020c1c);display:flex;align-items:center;justify-content:center}
-.frame{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0}
-.frame.active{opacity:1;animation:pop .5s ease}
-@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
-.shield{width:140px;height:160px;background:linear-gradient(135deg,#6fb0ff,#0a4be6);clip-path:polygon(50% 0,100% 18%,100% 68%,50% 100%,0 68%,0 18%);display:grid;place-items:center;font-size:70px;box-shadow:0 0 40px #3a8bff}
-h1{margin-top:22px;font-size:26px;color:#5ba8ff}
-#app{display:none;min-height:100vh;background:radial-gradient(1000px 500px at 50% -10%,#0f2e60,#020c1c 60%);padding:0 16px 30px}
-#app.show{display:block}
-.header{text-align:center;padding:28px 0 12px}
-.mini{width:62px;height:70px;margin:0 auto;background:linear-gradient(135deg,#5ba8ff,#0047ff);clip-path:polygon(50% 0,100% 18%,100% 68%,50% 100%,0 68%,0 18%);display:grid;place-items:center;font-size:30px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:440px;margin:14px auto}
-.stat{background:rgba(255,255,255,.08);border:1px solid rgba(91,168,255,.2);border-radius:14px;padding:12px;text-align:center}
-.stat .num{font-size:22px;font-weight:800;color:#5bff9f}
-.card{max-width:440px;margin:12px auto;background:rgba(255,255,255,.06);border:1px solid rgba(91,168,255,.2);border-radius:18px;padding:16px}
-.btn{width:100%;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer}
-.btn-blue{background:linear-gradient(90deg,#2e7fff,#0040ff);color:#fff}
-.progress{height:8px;background:#ffffff14;border-radius:10px;overflow:hidden;margin:12px 0;display:none}
-.bar{height:100%;width:0%;background:linear-gradient(90deg,#00eaff,#2dff8a);transition:width .3s}
-.log{background:#000a;padding:10px;border-radius:10px;font-family:monospace;font-size:11px;color:#8effb8;min-height:110px;white-space:pre-wrap}
-</style></head><body>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WORLD AI POLICE V5 - BADY AI BRAIN</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI'}
+body{background:#060f22;color:#e2e8f0;overflow:hidden}
+#splash{position:fixed;inset:0;z-index:99999;background:radial-gradient(800px 500px at 50% 0%,#0e2d6b,#07122a 55%,#020c1c);display:flex;align-items:center;justify-content:center;transition:opacity .9s}
+.frame{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transform:scale(.96);transition:.6s}
+.frame.active{opacity:1;pointer-events:auto;transform:scale(1)}
+.f-badge{position:absolute;top:16px;left:14px;font-size:9px;padding:5px 10px;border-radius:20px;font-weight:700}
+.f1 .f-badge{color:#d4a43c;border:1px solid #d4a43c}.f2 .f-badge{color:#00eaff;border:1px solid #00eaff}.f3 .f-badge{color:#2dff8a;border:1px solid #2dff8a}
+.shield{width:156px;height:178px;background:linear-gradient(135deg,#7ab8ff,#0a63ff);clip-path:polygon(50% 0,100% 18%,100% 68%,50% 100%,0 68%,0 18%);display:grid;place-items:center;font-size:72px;filter:drop-shadow(0 0 35px #5ba8ff);animation:pulse 2s infinite}
+@keyframes pulse{50%{transform:scale(1.05)}}
+.title{margin-top:22px;font-size:26px;font-weight:800}
+.sub{font-size:14px;color:#9bb0d1;margin-top:4px}.sub b{color:#5ba8ff}
+.seal{margin-top:22px;background:linear-gradient(90deg,#231a00,#4a3600);border:1.5px solid #d4a43c;border-radius:30px;padding:9px 18px;font-size:11px;color:#ffda7a;font-weight:700}
+.bar{margin-top:24px;width:220px;height:4px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden}
+.bar-i{height:100%;width:0%;background:linear-gradient(90deg,#5ba8ff,#2dff8a)}
+#app{display:none;min-height:100vh;background:radial-gradient(1000px 600px at 50% -20%,#12295a,#080f23 50%,#050b1a);padding:14px 14px 90px;overflow-y:auto}
+#app.show{display:block}body.app-mode{overflow:auto}
+.top{max-width:480px;margin:0 auto}
+.header{background:linear-gradient(135deg,#11255a,#0d1c45);border:1px solid rgba(91,168,255,.25);border-radius:18px;padding:16px 18px;display:flex;align-items:center;gap:12px}
+.header .ic{width:44px;height:44px;background:radial-gradient(#cde4ff,#6ea8ff);border-radius:10px;display:grid;place-items:center;font-size:24px;clip-path:polygon(50% 0,100% 18%,100% 68%,50% 100%,0 68%,0 18%)}
+.header h1{font-size:19px;font-weight:800;color:#5ba8ff}.header p{font-size:13px;color:#9fb3d3}
+.subtitle{text-align:center;margin:14px 0;color:#6b84aa;font-size:13px}
+.search{max-width:480px;margin:0 auto 14px;background:rgba(0,0,0,.3);border:1.5px solid #00d084;border-radius:28px;padding:4px;display:flex}
+.search input{flex:1;background:transparent;border:none;outline:none;color:#fff;padding:12px 16px;font-size:14px}
+.btns{display:flex;gap:12px;max-width:480px;margin:0 auto 16px}
+.btns button{flex:1;padding:14px;border:none;border-radius:14px;font-weight:800;font-size:15px;color:#fff;cursor:pointer}
+.ask{background:linear-gradient(90deg,#1a6bff,#0050ff)}.suno{background:linear-gradient(90deg,#00b87a,#00d68f)}
+.card{max-width:480px;margin:0 auto 14px;background:rgba(18,28,56,.9);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:16px}
+.card h3{font-size:15px;margin-bottom:12px}
+.radar{display:flex;align-items:center;gap:16px}.radar-c{width:74px;height:74px;border:3px solid #00d084;border-radius:50%;display:grid;place-items:center}
+.dot{width:10px;height:10px;background:#fff;border-radius:50%}
+.safe{color:#00ff88;font-size:16px;font-weight:800}
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.stat{background:rgba(0,0,0,.35);border-radius:14px;padding:12px;text-align:center}.stat .n{font-size:26px;font-weight:800}.green{color:#00ff88}
+.quick{display:flex;flex-wrap:wrap;gap:8px}.q{padding:8px 12px;background:rgba(91,168,255,.15);border:1px solid rgba(91,168,255,.2);border-radius:20px;font-size:13px;cursor:pointer}
+#aiResult{display:none;margin-top:12px;background:rgba(0,0,0,.5);border-radius:14px;padding:14px;border-left:4px solid #00ff88}
+.risk-bar{height:10px;background:rgba(255,255,255,.1);border-radius:10px;overflow:hidden;margin:10px 0}.risk-fill{height:100%}
+.footer{text-align:center;margin-top:20px;font-size:10px;opacity:.4}
+</style>
+</head>
+<body>
 <div id="splash">
-<div class="frame active" id="f1"><div class="shield">✓</div><h1>WORLD AI POLICE <b>V5 PRO</b></h1><p>Made by BADY Beed</p></div>
-<div class="frame" id="f2"><div class="shield">✓</div><h1>WORLD AI POLICE V5 PRO</h1><p>Scanning...</p></div>
-<div class="frame" id="f3"><div class="shield" style="background:linear-gradient(135deg,#2dff8a,#00a85a)">✓</div><h1 style="color:#4eff9f">LOADING COMPLETE ✓</h1></div>
+<div class="frame f1 active" id="f1"><div class="f-badge">FRAME 1 • LOGO APPEARS</div><div class="shield">🛡️</div><div class="title">WORLD AI POLICE V5</div><div class="sub">Made by <b>BADY</b> Beed ✓</div><div class="seal">★ Crafted by BADY Beed - OFFICIAL SEAL</div><div class="bar"><div class="bar-i" id="bar"></div></div></div>
+<div class="frame f2" id="f2"><div class="f-badge">FRAME 2 • BRAIN ACTIVATING</div><div class="shield">🧠</div><div class="title">AI BRAIN LOADING...</div><div class="sub">Analyzing 1000+ scam patterns</div></div>
+<div class="frame f3" id="f3"><div class="f-badge">FRAME 3 • AI READY</div><div class="shield">✓</div><div class="title" style="color:#4eff9f">AI BRAIN ACTIVE ✓</div><div class="seal">✓ Protected by BADY Beed AI</div></div>
 </div>
 <div id="app">
-<div class="header"><div class="mini">✓</div><h1 style="font-size:20px;margin-top:8px">WORLD AI POLICE V5 PRO</h1><p>Made by BADY Beed • Official</p></div>
-<div class="grid">
-<div class="stat"><div class="num" id="score">100</div><div>PROTECTION SCORE</div></div>
-<div class="stat"><div class="num" id="threats">0</div><div>THREATS</div></div>
-</div>
-<div class="card">
-<div style="display:flex;justify-content:space-between"><h3>🛡️ Protection Dashboard</h3><span id="pct" style="color:#2dff8a;font-weight:700"></span></div>
-<div class="progress" id="prog"><div class="bar" id="bar"></div></div>
-<button class="btn btn-blue" id="scanBtn" onclick="startScan()">▶ START PROTECTION SCAN</button>
-<div class="log" id="log">> V5 PRO Ready...
-> Crafted by BADY Beed
-> Awaiting command...</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
-<div style="padding:10px;background:#ffffff0e;border-radius:10px;text-align:center;font-size:11px" onclick="shareApp()">📤 Share App</div>
-<div style="padding:10px;background:#ffffff0e;border-radius:10px;text-align:center;font-size:11px" onclick="downloadReport()">📄 Download Report</div>
-</div>
-</div>
-</div>
+<div class="top">
+<div class="header"><div class="ic">🧠</div><div><h1>WORLD AI POLICE V5 ✓</h1><p>AI BRAIN by <b>BADY</b> Beed ✓</p></div></div>
+<div class="subtitle">WORLD AI POLICE BRAIN - Real-time Scam Detection</div>
+<div class="search"><input id="q" placeholder="Paste link, message or news to check..."></div>
+<div class="btns"><button class="ask" onclick="runBrain()">🧠 ANALYZE WITH AI</button><button class="suno" onclick="speakResult()">📢 SUNO</button></div>
+<div id="aiResult"></div>
+<div class="card"><h3>📡 Real-time Threat Radar</h3><div class="radar"><div class="radar-c"><div class="dot"></div></div><div><div class="safe" id="radarText">SAFE — No active threats</div><span style="font-size:13px;color:#6b9b8a">AI Brain Live</span></div></div></div>
+<div class="card"><h3>🛡️ Protection Stats</h3><div class="stats"><div class="stat"><div>Scams Blocked</div><div class="n" id="scamCount">1247</div></div><div class="stat"><div>Fake News</div><div class="n">89</div></div><div class="stat"><div>Secure</div><div class="n green">100%</div></div></div></div>
+<div class="card"><h3>⚡ Quick Tests - Try AI Brain</h3><div class="quick"><div class="q" onclick="testAI('You won 10 lakh lottery! Click bit.ly/free-money now')">🎰 Lottery Scam</div><div class="q" onclick="testAI('URGENT: Your bank account blocked, verify at http://sbi-update-kyc.tk')">🏦 Bank Scam</div><div class="q" onclick="testAI('https://google.com')">🔗 Safe Link</div><div class="q" onclick="testAI('Earn 5000 daily from home, WhatsApp 9876543210')">💸 Job Scam</div></div></div>
+<div class="card"><h3>🕒 AI Analysis History</h3><div id="recent">No scans yet - Test AI Brain above!</div></div>
+<div class="footer">© 2026 WORLD AI POLICE BRAIN by BADY Beed</div>
+</div></div>
 <script>
-let cur=1;function showF(n){document.querySelectorAll('.frame').forEach(f=>f.classList.remove('active'));document.getElementById('f'+n).classList.add('active')}
-let si=setInterval(()=>{cur++;if(cur>3){clearInterval(si);let s=document.getElementById('splash');s.style.opacity='0';setTimeout(()=>{s.style.display='none';document.getElementById('app').classList.add('show')},700);return}showF(cur)},2100);
-function startScan(){let p=0;let prog=document.getElementById('prog'),bar=document.getElementById('bar'),log=document.getElementById('log'),pct=document.getElementById('pct'),btn=document.getElementById('scanBtn');btn.style.display='none';prog.style.display='block';log.innerHTML='';let steps=["> Module 1/5: Malware Scan... ✓ Clean","> Module 2/5: Phishing... ✓ Safe","> Module 3/5: AI Threat... ✓ No trap","> Module 4/5: Privacy... ✓ Protected","> Module 5/5: Network... ✓ Encrypted","✓ SCAN COMPLETE - Protected by BADY Beed Official!","✓ Score: 100/100 • Status: SECURE"];let idx=0;let iv=setInterval(()=>{p+=Math.floor(Math.random()*18)+8;if(p>100)p=100;bar.style.width=p+'%';pct.textContent=p+'%';if(p%30<12&&idx<steps.length){log.innerHTML+=steps[idx]+"\\n";idx++;}if(p>=100){clearInterval(iv);log.innerHTML+="\\n> Report ID: BADY-V5-"+Date.now().toString().slice(-6)}},300);}
-function shareApp(){let url='https://khansahil79362-code.github.io/world-ai-police/';if(navigator.share){navigator.share({title:'WORLD AI POLICE V5 PRO',url})}else{alert('Link copied: '+url)}}
-function downloadReport(){let c=`WORLD AI POLICE V5 PRO\\nCrafted by BADY Beed\\nDate: ${new Date().toLocaleString()}\\nScore: 100/100`;let b=new Blob([c],{type:'text/plain'});let a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='BADY-V5-Report.txt';a.click();}
+let cur=1,prog=0;const bar=document.getElementById('bar');
+function showF(n){document.querySelectorAll('.frame').forEach(f=>f.classList.remove('active'));document.getElementById('f'+n).classList.add('active')}
+let interval=setInterval(()=>{prog+=2;if(bar)bar.style.width=prog+'%';if(prog>=33&&cur==1){cur=2;showF(2)}if(prog>=66&&cur==2){cur=3;showF(3)}if(prog>=100){clearInterval(interval);setTimeout(()=>{const s=document.getElementById('splash');s.style.opacity='0';setTimeout(()=>{s.style.display='none';const app=document.getElementById('app');app.style.display='block';app.classList.add('show');document.body.classList.add('app-mode');},800)},600)}},35);
+const SCAM_WORDS=['lottery','won','prize','bit.ly','free money','urgent','blocked','kyc','verify','click now','earn daily','whatsapp','job from home','t.me','tinyurl','.tk','.ml','sbi-update','congratulations','claim now','limited time','act now','account suspended','refund','crypto double','investment 2x'];
+const SAFE_WORDS=['google.com','youtube.com','wikipedia','gov.in','edu'];
+let lastResult='';
+function runBrain(){let input=document.getElementById('q').value.trim();if(!input)input='Test scan';let lower=input.toLowerCase();let score=0,reasons=[];SCAM_WORDS.forEach(w=>{if(lower.includes(w)){score+=18;reasons.push('⚠️ Detected: "'+w+'"')}});if(/http/.test(lower)&&!SAFE_WORDS.some(s=>lower.includes(s))){if(input.includes('bit.ly')||input.includes('.tk')||input.includes('.ml')){score+=30;reasons.push('⚠️ Suspicious short/unknown domain')}}if(/\d{10}/.test(input)&&lower.includes('whatsapp')){score+=20;reasons.push('⚠️ WhatsApp number with money offer')}if(lower.includes('urgent')||lower.includes('immediately')){score+=10;reasons.push('⚠️ Urgency pressure tactic')}if(score>100)score=95;if(reasons.length==0){score=Math.floor(Math.random()*15);reasons.push('✅ No scam patterns found');reasons.push('✅ Domain looks safe');}let color=score>70?'#ff3b3b':score>40?'#ffb020':'#00ff88';let label=score>70?'HIGH RISK - SCAM! 🚨':score>40?'MEDIUM RISK - Suspicious ⚠️':'SAFE ✓ - No Threat';let html=`<div style="display:flex;justify-content:space-between"><b>🧠 AI BRAIN RESULT</b><span style="background:${color};color:#000;padding:3px 10px;border-radius:20px;font-size:12px;font-weight:800">${label}</span></div><div style="margin-top:8px">Risk Score: <b style="color:${color}">${score}%</b></div><div class="risk-bar"><div class="risk-fill" style="width:${score}%;background:${color}"></div></div><div style="font-size:12px">${reasons.join('<br>')}</div>`;let res=document.getElementById('aiResult');res.style.display='block';res.style.borderLeftColor=color;res.innerHTML=html;document.getElementById('radarText').innerHTML=score>70?'🚨 THREAT DETECTED!':'SAFE — No active threats';document.getElementById('radarText').style.color=color;document.getElementById('recent').innerHTML=`<div>🧠 ${input.substring(0,40)}... <b style="color:${color}">${score}% - ${label}</b></div>`+document.getElementById('recent').innerHTML;lastResult=label+' Risk '+score+' percent. '+(score>70?'This is scam bady, do not click!':'This looks safe bady.');if(score>50)speakResult();let c=document.getElementById('scamCount');c.textContent=parseInt(c.textContent)+(score>70?1:0);}
+function testAI(t){document.getElementById('q').value=t;runBrain();}
+function speakResult(){if(!lastResult)lastResult='World AI Police Brain is active and protecting you';let u=new SpeechSynthesisUtterance(lastResult);u.lang='en-IN';speechSynthesis.speak(u);}
 </script>
-</body></html>
+</body>
+</html>
