@@ -11,7 +11,6 @@ input,textarea{width:100%;padding:12px;border-radius:10px;border:none;background
 .card{background:#111;border:1px solid #333;border-radius:12px;padding:12px;margin-top:12px}
 .top{display:flex;justify-content:space-between;align-items:center}
 .small{color:#aaa;font-size:13px}
-.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;margin:3px;background:#222}
 </style>
 </head>
 <body>
@@ -19,12 +18,12 @@ input,textarea{width:100%;padding:12px;border-radius:10px;border:none;background
 <h1>🧠 WORLD AI POLICE</h1>
 <p class="small">WORLD AI POLICE BRAIN - Real-time Scam Protection</p>
 <textarea id="msg" rows="3" placeholder="Paste karo - SMS / Link / Call message..."></textarea>
-<button onclick="check()">🤖 Llama Se Check Karo</button>
+<button onclick="check()">🤖 AI Se Check Karo</button>
 <div id="result"></div>
 
 <div class="card"><b>📡 Real-time Threat Radar</b><br>🔴 Lottery Scam - High Alert<br>🔴 Parcel Scam - High Alert<br>🟡 KYC Update Scam - Medium<br>🟢 Safe Zone - Google / YouTube / Wikipedia</div>
 
-<div class="card"><b>🛡️ Protection Stats</b><br><span id="stats">Aaj Scans: 0 | Blocked: 0 | Safe: 0</span><br>AI Engine: Meta Llama 3.1 via Groq</div>
+<div class="card"><b>🛡️ Protection Stats</b><br><span id="stats">Aaj Scans: 0 | Blocked: 0 | Safe: 0</span><br>AI Engine: GPT-OSS-20b via Groq</div>
 
 <div class="card"><b>⚡ Quick Tests</b><br><br>
 <button onclick="quick('Aapka parcel atka hai, is link pe click karo')" style="width:auto">📦 Parcel Scam</button>
@@ -48,14 +47,14 @@ function quick(t){ document.getElementById('msg').value=t; check(); }
 async function check(){
   let text = document.getElementById('msg').value.trim();
   if(!text){ document.getElementById('result').innerHTML='<div class="card">Pehle message to likh bady!</div>'; return; }
-  document.getElementById('result').innerHTML='<div class="card">🤖 Llama soch raha hai...</div>';
+  document.getElementById('result').innerHTML='<div class="card">🤖 AI soch raha hai...</div>';
   
   try{
     let res = await fetch('https://api.groq.com/openai/v1/chat/completions',{
       method:'POST',
       headers:{'Authorization':'Bearer '+GROQ_API_KEY,'Content-Type':'application/json'},
       body: JSON.stringify({
-        model:'llama-3.1-8b-instant',
+        model:'openai/gpt-oss-20b',
         messages:[
           {role:'system', content:'Tu WORLD AI POLICE hai. Hinglish me jawab de. Sirf JSON de: {"score":0-100, "verdict":"SCAM HAI BADY / SAFE HAI", "reason":"short reason hindi me"}'},
           {role:'user', content:text}
@@ -71,7 +70,7 @@ async function check(){
     scans++; if(j.score>60) blocked++; else safe++;
     document.getElementById('stats').innerText=`Aaj Scans: ${scans} | Blocked: ${blocked} | Safe: ${safe}`;
     let color = j.score>60 ? '#ff2d55' : '#30d158';
-    document.getElementById('result').innerHTML=`<div class="card" style="border:2px solid ${color}"><h2 style="color:${color}">Risk Score: ${j.score}%</h2><h2>${j.verdict}</h2><p>${j.reason}</p><p class="small">Llama Bola: ${aiText}</p></div>`;
+    document.getElementById('result').innerHTML=`<div class="card" style="border:2px solid ${color}"><h2 style="color:${color}">Risk Score: ${j.score}%</h2><h2>${j.verdict}</h2><p>${j.reason}</p><p class="small">AI Bola: ${aiText}</p></div>`;
     if(j.score>60 && 'speechSynthesis' in window){ let u=new SpeechSynthesisUtterance('Ruk ja bady, ye scam hai!'); u.lang='hi-IN'; speechSynthesis.speak(u); }
   }catch(e){
     document.getElementById('result').innerHTML=`<div class="card" style="border:2px solid orange"><h2>Risk Score: 50% (Offline Mode)</h2><p>Error: ${e.message}</p><p>Key check karne ke liye 🔑 Key Badlo dabba. Nayi key Groq se bana ke daal.</p><button onclick="badloKey()">🔑 Key Dobara Daalo</button></div>`;
