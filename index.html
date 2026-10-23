@@ -1,56 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD AI POLICE V5 - Made by BADY Beed</title>
-<style>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WORLD AI POLICE V5 PRO</title><style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{background:#020c1c;color:#fff;overflow-x:hidden}
-#splash{position:fixed;inset:0;z-index:9999;background:radial-gradient(#0a1f45,#020c1c);display:flex;align-items:center;justify-content:center}
+body{background:#020c1c;color:#fff}
+#splash{position:fixed;inset:0;z-index:9999;background:radial-gradient(#102a5a,#020c1c);display:flex;align-items:center;justify-content:center}
 .frame{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0}
-.frame.active{opacity:1;animation:fade .6s ease}
-@keyframes fade{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
-.shield{width:150px;height:170px;background:linear-gradient(135deg,#7ab8ff,#0050d0);clip-path:polygon(50% 0,100% 18%,100% 68%,50% 100%,0 68%,0 18%);display:grid;place-items:center;font-size:80px;box-shadow:0 0 50px #5ba8ff}
-.wave{position:absolute;width:400px;height:400px;border:2px solid rgba(0,234,255,.4);border-radius:50%;animation:waveOut 2s infinite}
-@keyframes waveOut{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.8);opacity:0}}
-h1{margin-top:28px;font-size:28px;color:#5ba8ff}
-.badge{margin-top:26px;background:linear-gradient(90deg,#231a00,#4a3600);border:1.8px solid #d4a43c;border-radius:40px;padding:8px 18px;display:flex;align-items:center;gap:14px}
-#app{display:none;min-height:100vh;padding:20px}
+.frame.active{opacity:1;animation:pop .5s ease}
+@keyframes pop{from{transform:scale(.9);opacity:0}to{transform:scale(1);opacity:1}}
+.shield{width:140px;height:160px;background:linear-gradient(135deg,#6fb0ff,#0a4be6);clip-path:polygon(50% 0,100% 18%,100% 68%,50% 100%,0 68%,0 18%);display:grid;place-items:center;font-size:70px;box-shadow:0 0 40px #3a8bff}
+h1{margin-top:22px;font-size:26px;color:#5ba8ff}
+#app{display:none;min-height:100vh;background:radial-gradient(1000px 500px at 50% -10%,#0f2e60,#020c1c 60%);padding:0 16px 30px}
 #app.show{display:block}
-.card{max-width:420px;margin:20px auto;background:rgba(255,255,255,.06);border:1px solid rgba(91,168,255,.2);border-radius:20px;padding:20px}
-.btn{width:100%;padding:14px;border:none;border-radius:12px;font-weight:700;background:linear-gradient(90deg,#3a8bff,#0050ff);color:#fff}
-</style>
-</head>
-<body>
+.header{text-align:center;padding:28px 0 12px}
+.mini{width:62px;height:70px;margin:0 auto;background:linear-gradient(135deg,#5ba8ff,#0047ff);clip-path:polygon(50% 0,100% 18%,100% 68%,50% 100%,0 68%,0 18%);display:grid;place-items:center;font-size:30px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;max-width:440px;margin:14px auto}
+.stat{background:rgba(255,255,255,.08);border:1px solid rgba(91,168,255,.2);border-radius:14px;padding:12px;text-align:center}
+.stat .num{font-size:22px;font-weight:800;color:#5bff9f}
+.card{max-width:440px;margin:12px auto;background:rgba(255,255,255,.06);border:1px solid rgba(91,168,255,.2);border-radius:18px;padding:16px}
+.btn{width:100%;padding:14px;border:none;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer}
+.btn-blue{background:linear-gradient(90deg,#2e7fff,#0040ff);color:#fff}
+.progress{height:8px;background:#ffffff14;border-radius:10px;overflow:hidden;margin:12px 0;display:none}
+.bar{height:100%;width:0%;background:linear-gradient(90deg,#00eaff,#2dff8a);transition:width .3s}
+.log{background:#000a;padding:10px;border-radius:10px;font-family:monospace;font-size:11px;color:#8effb8;min-height:110px;white-space:pre-wrap}
+</style></head><body>
 <div id="splash">
-  <div class="frame active" id="f1">
-    <div style="position:absolute;top:18px;left:16px;font-size:10px;color:#d4a43c;border:1px solid #d4a43c;padding:4px 10px;border-radius:20px">FRAME 1 • LOGO APPEARS</div>
-    <div class="shield">✓</div>
-    <h1>WORLD AI POLICE <b>V5</b></h1>
-    <p>Made by <b>BADY</b> Beed</p>
-    <div class="badge">◉ Crafted by <b>BADY Beed</b> - OFFICIAL SEAL</div>
-  </div>
-  <div class="frame" id="f2">
-    <div style="position:absolute;top:18px;left:16px;font-size:10px;color:#00eaff;border:1px solid #00eaff;padding:4px 10px;border-radius:20px">FRAME 2 • GLOW PULSE</div>
-    <div style="position:relative;display:grid;place-items:center"><div class="wave"></div><div class="shield">✓</div></div>
-    <h1>WORLD AI POLICE <b>V5</b></h1>
-    <div class="badge">◉ Crafted by <b>BADY Beed</b></div>
-  </div>
-  <div class="frame" id="f3">
-    <div style="position:absolute;top:18px;left:16px;font-size:10px;color:#2dff8a;border:1px solid #2dff8a;padding:4px 10px;border-radius:20px">FRAME 3 • LOADING COMPLETE</div>
-    <div class="shield" style="background:linear-gradient(135deg,#2dff8a,#00a85a)">✓</div>
-    <h1 style="color:#4eff9f">WORLD AI POLICE <b>V5</b></h1>
-    <div class="badge">◉ Crafted by <b>BADY Beed</b></div>
-  </div>
+<div class="frame active" id="f1"><div class="shield">✓</div><h1>WORLD AI POLICE <b>V5 PRO</b></h1><p>Made by BADY Beed</p></div>
+<div class="frame" id="f2"><div class="shield">✓</div><h1>WORLD AI POLICE V5 PRO</h1><p>Scanning...</p></div>
+<div class="frame" id="f3"><div class="shield" style="background:linear-gradient(135deg,#2dff8a,#00a85a)">✓</div><h1 style="color:#4eff9f">LOADING COMPLETE ✓</h1></div>
 </div>
 <div id="app">
-  <div style="text-align:center;padding:40px 10px 20px"><div style="width:80px;height:90px;margin:0 auto;background:linear-gradient(135deg,#5ba8ff,#0047ff);clip-path:polygon(50% 0,100% 18%,100% 68%,50% 100%,0 68%,0 18%);display:grid;place-items:center;font-size:40px">✓</div><h1 style="margin-top:12px;font-size:22px">WORLD AI POLICE V5</h1><p>Made by BADY Beed • Official</p></div>
-  <div class="card"><h3>🛡️ Protection Dashboard</h3><br><button class="btn" onclick="alert('✓ Scan Complete - Protected by BADY Beed Official!')">▶ START PROTECTION SCAN</button><p style="text-align:center;margin-top:30px;font-size:11px;opacity:.4">© 2026 Crafted by BADY Beed | Official Seal</p></div>
+<div class="header"><div class="mini">✓</div><h1 style="font-size:20px;margin-top:8px">WORLD AI POLICE V5 PRO</h1><p>Made by BADY Beed • Official</p></div>
+<div class="grid">
+<div class="stat"><div class="num" id="score">100</div><div>PROTECTION SCORE</div></div>
+<div class="stat"><div class="num" id="threats">0</div><div>THREATS</div></div>
+</div>
+<div class="card">
+<div style="display:flex;justify-content:space-between"><h3>🛡️ Protection Dashboard</h3><span id="pct" style="color:#2dff8a;font-weight:700"></span></div>
+<div class="progress" id="prog"><div class="bar" id="bar"></div></div>
+<button class="btn btn-blue" id="scanBtn" onclick="startScan()">▶ START PROTECTION SCAN</button>
+<div class="log" id="log">> V5 PRO Ready...
+> Crafted by BADY Beed
+> Awaiting command...</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+<div style="padding:10px;background:#ffffff0e;border-radius:10px;text-align:center;font-size:11px" onclick="shareApp()">📤 Share App</div>
+<div style="padding:10px;background:#ffffff0e;border-radius:10px;text-align:center;font-size:11px" onclick="downloadReport()">📄 Download Report</div>
+</div>
+</div>
 </div>
 <script>
-let cur=1;function showFrame(n){document.querySelectorAll('.frame').forEach(f=>f.classList.remove('active'));document.getElementById('f'+n).classList.add('active')}
-setInterval(()=>{cur++;if(cur>3){document.getElementById('splash').style.transition='1s';document.getElementById('splash').style.opacity='0';setTimeout(()=>{document.getElementById('splash').style.display='none';document.getElementById('app').classList.add('show')},800);return}showFrame(cur)},2200);
+let cur=1;function showF(n){document.querySelectorAll('.frame').forEach(f=>f.classList.remove('active'));document.getElementById('f'+n).classList.add('active')}
+let si=setInterval(()=>{cur++;if(cur>3){clearInterval(si);let s=document.getElementById('splash');s.style.opacity='0';setTimeout(()=>{s.style.display='none';document.getElementById('app').classList.add('show')},700);return}showF(cur)},2100);
+function startScan(){let p=0;let prog=document.getElementById('prog'),bar=document.getElementById('bar'),log=document.getElementById('log'),pct=document.getElementById('pct'),btn=document.getElementById('scanBtn');btn.style.display='none';prog.style.display='block';log.innerHTML='';let steps=["> Module 1/5: Malware Scan... ✓ Clean","> Module 2/5: Phishing... ✓ Safe","> Module 3/5: AI Threat... ✓ No trap","> Module 4/5: Privacy... ✓ Protected","> Module 5/5: Network... ✓ Encrypted","✓ SCAN COMPLETE - Protected by BADY Beed Official!","✓ Score: 100/100 • Status: SECURE"];let idx=0;let iv=setInterval(()=>{p+=Math.floor(Math.random()*18)+8;if(p>100)p=100;bar.style.width=p+'%';pct.textContent=p+'%';if(p%30<12&&idx<steps.length){log.innerHTML+=steps[idx]+"\\n";idx++;}if(p>=100){clearInterval(iv);log.innerHTML+="\\n> Report ID: BADY-V5-"+Date.now().toString().slice(-6)}},300);}
+function shareApp(){let url='https://khansahil79362-code.github.io/world-ai-police/';if(navigator.share){navigator.share({title:'WORLD AI POLICE V5 PRO',url})}else{alert('Link copied: '+url)}}
+function downloadReport(){let c=`WORLD AI POLICE V5 PRO\\nCrafted by BADY Beed\\nDate: ${new Date().toLocaleString()}\\nScore: 100/100`;let b=new Blob([c],{type:'text/plain'});let a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='BADY-V5-Report.txt';a.click();}
 </script>
-</body>
-</html>
+</body></html>
