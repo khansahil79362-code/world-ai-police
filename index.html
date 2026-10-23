@@ -3,143 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD AI POLICE BRAIN</title>
+<title>WORLD AI POLICE</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#000;color:#fff;min-height:100vh}
-#splash{position:fixed;inset:0;background:#000;z-index:999;display:flex;align-items:center;justify-content:center;text-align:center}
-.frame{display:none;padding:20px}
-.frame.active{display:block}
-.f-badge{background:#0064e0;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:bold}
-#app{display:none;padding:16px;max-width:600px;margin:auto}
-.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
-.header{font-size:22px;font-weight:900;letter-spacing:1px}
-.subtitle{font-size:12px;opacity:.7;margin:6px 0 14px}
-.search{display:flex;gap:8px;margin-bottom:12px}
-.search input{flex:1;padding:13px;border-radius:10px;border:1px solid #333;background:#111;color:#fff;outline:none;font-size:15px}
-.btns{display:flex;gap:8px;margin-bottom:14px}
-.ask{flex:1;background:#0064e0;color:#fff;border:none;padding:13px;border-radius:10px;font-weight:bold;font-size:15px}
-.keybtn{background:#111;color:#fff;border:1px solid #444;padding:6px 10px;border-radius:6px;font-size:12px}
-#aiResult{margin-bottom:14px}
-.card{background:#111;border:1px solid #222;border-radius:14px;padding:14px;margin-bottom:12px}
-.card h3{font-size:16px;margin-bottom:8px}
-.card p,.card div{font-size:13px;line-height:1.5;opacity:.9}
-.footer{text-align:center;font-size:11px;opacity:.5;margin-top:16px;padding-bottom:20px}
-.quick{margin-top:8px;display:flex;flex-wrap:wrap;gap:6px}
-.quick button{background:#222;color:#fff;border:1px solid #333;padding:6px 10px;border-radius:20px;font-size:12px}
+body{background:#000;color:#fff;font-family:Arial;padding:15px}
+button{background:#0a84ff;color:#fff;border:none;padding:12px 18px;border-radius:10px;font-weight:bold;width:100%;margin-top:10px;font-size:16px}
+input,textarea{width:100%;padding:12px;border-radius:10px;border:none;background:#1c1c1e;color:#fff;font-size:16px;box-sizing:border-box}
+.card{background:#111;border:1px solid #333;border-radius:12px;padding:12px;margin-top:12px}
+.top{display:flex;justify-content:space-between;align-items:center}
+.small{color:#aaa;font-size:13px}
+.badge{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;margin:3px;background:#222}
 </style>
 </head>
 <body>
+<div class="top"><button onclick="badloKey()" style="width:auto">🔑 Key Badlo</button><span>🇮🇳 Pune, India</span></div>
+<h1>🧠 WORLD AI POLICE</h1>
+<p class="small">WORLD AI POLICE BRAIN - Real-time Scam Protection</p>
+<textarea id="msg" rows="3" placeholder="Paste karo - SMS / Link / Call message..."></textarea>
+<button onclick="check()">🤖 Llama Se Check Karo</button>
+<div id="result"></div>
 
-<div id="splash">
-  <div class="frame f1 active" id="f1"><div class="f-badge">WORLD AI POLICE</div><h1 style="font-size:32px;margin:12px 0;">🛡️ WORLD AI POLICE<br>BRAIN</h1><p style="opacity:.7;">Real-time Scam Protection for India</p><p id="loadTxt" style="margin-top:16px;font-size:13px;">Loading AI Brain... 0%</p></div>
-  <div class="frame f2" id="f2"><div class="f-badge">STEP 2</div><h1 style="font-size:28px;margin:12px 0;">🤖 Llama AI Active</h1><p style="opacity:.7;">Meta Llama 3.1 se har message check hoga</p></div>
-  <div class="frame f3" id="f3"><div class="f-badge">READY</div><h1 style="font-size:28px;margin:12px 0;">✅ You Are Protected</h1><p style="opacity:.7;">Ab koi scammer tujhe loot nahi payega</p></div>
-</div>
+<div class="card"><b>📡 Real-time Threat Radar</b><br>🔴 Lottery Scam - High Alert<br>🔴 Parcel Scam - High Alert<br>🟡 KYC Update Scam - Medium<br>🟢 Safe Zone - Google / YouTube / Wikipedia</div>
 
-<div id="app">
-  <div class="top">
-    <button onclick="changeKey()" class="keybtn">🔑 Key Badlo</button>
-    <span style="font-size:12px;opacity:.6;">🇮🇳 Pune, India</span>
-  </div>
+<div class="card"><b>🛡️ Protection Stats</b><br><span id="stats">Aaj Scans: 0 | Blocked: 0 | Safe: 0</span><br>AI Engine: Meta Llama 3.1 via Groq</div>
 
-  <div class="header">🧠 WORLD AI POLICE</div>
-  <div class="subtitle">WORLD AI POLICE BRAIN - Real-time Scam Protection</div>
-
-  <div class="search"><input id="q" placeholder="Paste karo - SMS / Link / Call message..."></div>
-  <div class="btns"><button class="ask" onclick="checkScamWithAI()">🤖 Llama Se Check Karo</button></div>
-  <div id="aiResult"></div>
-
-  <div class="card"><h3>📡 Real-time Threat Radar</h3><div>🔴 Lottery Scam - High Alert<br>🔴 Parcel Scam - High Alert<br>🟡 KYC Update Scam - Medium<br>🟢 Safe Zone - Google / YouTube / Wikipedia</div></div>
-  <div class="card"><h3>🛡️ Protection Stats</h3><div id="stats">Aaj Scans: 0 | Blocked: 0 | Safe: 0<br>AI Engine: Meta Llama 3.1 via Groq</div></div>
-  <div class="card"><h3>⚡ Quick Tests - Try AI Brain</h3><p>Ek click karke test karo:</p><div class="quick">
-    <button onclick="testAI('Aapka parcel atka hai, is link pe click karo')">📦 Parcel Scam</button>
-    <button onclick="testAI('Aapne 25000 lottery jeeti hai, OTP bhejo')">🎰 Lottery Scam</button>
-    <button onclick="testAI('Bank KYC update nahi kiya to account band ho jayega')">🏦 KYC Scam</button>
-    <button onclick="testAI('https://www.google.com')">✅ Safe Link</button>
-  </div></div>
-  <div class="card"><h3>🕒 AI Analysis History</h3><div id="history">Abhi tak koi scan nahi hua.</div></div>
-
-  <div class="footer">© 2026 WORLD AI POLICE BRAIN by Sahil Khan<br>Powered by Meta Llama 3.1</div>
+<div class="card"><b>⚡ Quick Tests</b><br><br>
+<button onclick="quick('Aapka parcel atka hai, is link pe click karo')" style="width:auto">📦 Parcel Scam</button>
+<button onclick="quick('Aapne 25000 lottery jeeti hai, OTP bhejo')" style="width:auto">🎰 Lottery Scam</button>
+<button onclick="quick('KYC update nahi kiya to account band ho jayega')" style="width:auto">🏦 KYC Scam</button>
+<button onclick="quick('https://www.google.com')" style="width:auto">✅ Safe Link</button>
 </div>
 
 <script>
-// ===== KEY EK BAAR WALA - DOBARA NAHI PUCHEGA =====
-function getKey(){ return localStorage.getItem("my_groq_key"); }
-function setupKey(){
-  let key = getKey();
-  if(!key){
-    key = prompt("Bady, apni Groq Key ek baar daal de (ek hi baar puchunga):");
-    if(key){ localStorage.setItem("my_groq_key", key); alert("Ho gaya! Ab kabhi nahi puchunga ✅"); }
-  }
-  return key;
+let GROQ_API_KEY = localStorage.getItem('groq_key') || '';
+let scans=0, blocked=0, safe=0;
+
+function badloKey(){
+  let k = prompt('Apni Groq Key daal de (gsk_ se shuru hoti hai):', GROQ_API_KEY);
+  if(k){ GROQ_API_KEY = k.trim(); localStorage.setItem('groq_key', GROQ_API_KEY); alert('Key badal gayi ✅'); }
 }
-let GROQ_API_KEY = setupKey();
-function changeKey(){
-  let n = prompt("Nayi Key daal de bady:");
-  if(n){ localStorage.setItem("my_groq_key", n); GROQ_API_KEY = n; alert("Key badal gayi ✅"); }
-}
+if(!GROQ_API_KEY){ badloKey(); }
 
-// ===== SPLASH =====
-let cur=1, prog=0;
-const bar=document.getElementById("loadTxt");
-function showF(n){ document.querySelectorAll('.frame').forEach(f=>f.classList.remove('active')); document.getElementById('f'+n).classList.add('active'); }
-let interval=setInterval(()=>{
-  prog+=2;
-  if(bar) bar.textContent="Loading AI Brain... "+prog+"%";
-  if(prog>=100){
-    clearInterval(interval);
-    document.getElementById('splash').style.display='none';
-    document.getElementById('app').style.display='block';
-  } else if(prog==40) showF(2);
-  else if(prog==75) showF(3);
-},30);
+function quick(t){ document.getElementById('msg').value=t; check(); }
 
-// ===== OLD WORDS BACKUP (agar net na ho) =====
-const SCAM_WORDS=['lottery','won','prize','bit.ly','otp','kyc','parcel','account band','urgent','click here'];
-const SAFE_WORDS=['google.com','youtube.com','wikipedia','gov.in'];
-let lastResult='';
-let scanCount=0, blockedCount=0, safeCount=0;
-
-function testAI(t){ document.getElementById('q').value=t; checkScamWithAI(); }
-
-// ===== MAIN LLAMA FUNCTION =====
-async function checkScamWithAI(){
-  const input = document.getElementById("q").value.trim();
-  const resultBox = document.getElementById("aiResult");
-  if(!input){ resultBox.innerHTML="Pehle message to likh bady!"; return; }
-  resultBox.innerHTML="🤖 Llama soch raha hai bady... 2 sec ruk...";
+async function check(){
+  let text = document.getElementById('msg').value.trim();
+  if(!text){ document.getElementById('result').innerHTML='<div class="card">Pehle message to likh bady!</div>'; return; }
+  document.getElementById('result').innerHTML='<div class="card">🤖 Llama soch raha hai...</div>';
+  
   try{
-    const res = await fetch("https://api.groq.com/openai/v1/chat/completions",{
-      method:"POST",
-      headers:{"Authorization":"Bearer "+GROQ_API_KEY,"Content-Type":"application/json"},
-      body:JSON.stringify({
-        model:"llama-3.1-8b-instant",
-        messages:[{role:"user", content:`You are WORLD AI POLICE. Analyze this message for scam in India. Message: "${input}". Reply ONLY JSON: {"score":0-100, "reason_hindi":"1 line hindi me kyu scam hai", "is_scam":true/false}`}],
-        temperature:0.1
+    let res = await fetch('https://api.groq.com/openai/v1/chat/completions',{
+      method:'POST',
+      headers:{'Authorization':'Bearer '+GROQ_API_KEY,'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'llama-3.1-8b-instant',
+        messages:[
+          {role:'system', content:'Tu WORLD AI POLICE hai. Hinglish me jawab de. Sirf JSON de: {"score":0-100, "verdict":"SCAM HAI BADY / SAFE HAI", "reason":"short reason hindi me"}'},
+          {role:'user', content:text}
+        ],
+        temperature:0.2
       })
     });
-    const data = await res.json();
-    const r = JSON.parse(data.choices[0].message.content);
-    const color = r.score>70?"red":r.score>40?"orange":"green";
-    const label = r.is_scam?"🚨 SCAM HAI BADY!":"✅ SAFE HAI";
-    resultBox.innerHTML=`<div style="border:3px solid ${color};padding:15px;border-radius:12px;background:#111;color:white;"><h2 style="margin:0;">Risk Score: ${r.score}%</h2><h3 style="margin:6px 0;">${label}</h3><p><b>Llama Bola:</b> ${r.reason_hindi}</p><p style="font-size:11px;opacity:.6;">Powered by Meta Llama 3.1 via Groq</p></div>`;
-    lastResult = r.reason_hindi;
-    scanCount++;
-    if(r.is_scam) blockedCount++; else safeCount++;
-    document.getElementById('stats').innerHTML=`Aaj Scans: ${scanCount} | Blocked: ${blockedCount} | Safe: ${safeCount}<br>AI Engine: Meta Llama 3.1 via Groq`;
-    document.getElementById('history').innerHTML=`<div>• ${input.slice(0,40)}... → ${r.score}% - ${label}</div>` + document.getElementById('history').innerHTML;
-    let m = new SpeechSynthesisUtterance(r.reason_hindi); m.lang='hi-IN'; window.speechSynthesis.speak(m);
+    let data = await res.json();
+    if(!res.ok) throw new Error(data.error?.message || 'Key galat hai');
+    let aiText = data.choices[0].message.content;
+    let clean = aiText.replace(/```json|```/g,'').trim();
+    let j = JSON.parse(clean);
+    scans++; if(j.score>60) blocked++; else safe++;
+    document.getElementById('stats').innerText=`Aaj Scans: ${scans} | Blocked: ${blocked} | Safe: ${safe}`;
+    let color = j.score>60 ? '#ff2d55' : '#30d158';
+    document.getElementById('result').innerHTML=`<div class="card" style="border:2px solid ${color}"><h2 style="color:${color}">Risk Score: ${j.score}%</h2><h2>${j.verdict}</h2><p>${j.reason}</p><p class="small">Llama Bola: ${aiText}</p></div>`;
+    if(j.score>60 && 'speechSynthesis' in window){ let u=new SpeechSynthesisUtterance('Ruk ja bady, ye scam hai!'); u.lang='hi-IN'; speechSynthesis.speak(u); }
   }catch(e){
-    console.log(e);
-    // Agar Llama fail ho to purana word wala system
-    let score = 10;
-    SCAM_WORDS.forEach(w=>{ if(input.toLowerCase().includes(w)) score+=20; });
-    resultBox.innerHTML=`<div style="border:3px solid orange;padding:15px;border-radius:12px;background:#111;color:white;"><h2>Risk Score: ${score}% (Offline Mode)</h2><p>Net / Key me issue hai, offline check kiya hai. Key check karne ke liye 🔑 Key Badlo dabba.</p></div>`;
+    document.getElementById('result').innerHTML=`<div class="card" style="border:2px solid orange"><h2>Risk Score: 50% (Offline Mode)</h2><p>Error: ${e.message}</p><p>Key check karne ke liye 🔑 Key Badlo dabba. Nayi key Groq se bana ke daal.</p><button onclick="badloKey()">🔑 Key Dobara Daalo</button></div>`;
   }
 }
-function speakResult(){ if(!lastResult) lastResult="Koi result nahi hai"; let m=new SpeechSynthesisUtterance(lastResult); m.lang='hi-IN'; window.speechSynthesis.speak(m); }
-function runBrain(){ checkScamWithAI(); }
 </script>
 </body>
 </html>
