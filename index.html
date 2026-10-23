@@ -3,151 +3,54 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>WORLD AI POLICE V5 - BADY Beed</title>
+<title>WORLD AI POLICE V5 - Made by BADY Beed</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
-body{background:#02040a;color:#fff;min-height:100vh;padding:15px;background-image:radial-gradient(circle at top,#0a1a2f 0%,#02040a 70%)}
-.phone{max-width:420px;margin:auto;background:rgba(12,18,32,0.9);border:1px solid #1a2a4a;border-radius:30px;padding:18px;backdrop-filter:blur(20px);box-shadow:0 0 40px rgba(0,150,255,0.15)}
-.header{background:linear-gradient(90deg,#0f1f3a,#162e5a);border:1px solid #2a4a8a;border-radius:16px;padding:14px;display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.header h1{font-size:20px;color:#6aa8ff} .header span{color:#aaa;font-size:13px}
-.card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:14px;margin-bottom:12px}
-.input-box{width:100%;background:#0a0f1e;border:2px solid #00ffaa44;border-radius:20px;padding:14px 16px;color:#fff;outline:none;box-shadow:0 0 15px #00ffaa22}
-.btns{display:flex;gap:10px;margin:12px 0}
-.btn{flex:1;padding:14px;border:none;border-radius:14px;font-weight:bold;cursor:pointer;font-size:16px}
-.blue{background:linear-gradient(90deg,#1a6dff,#0a4bff);color:#fff}
-.green{background:linear-gradient(90deg,#00c896,#00a67a);color:#fff}
-.radar{display:flex;align-items:center;gap:12px}
-.radar-circle{width:70px;height:70px;border-radius:50%;border:2px solid #00ff88;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle,#00ff8833,transparent);animation:pulse 2s infinite}
-@keyframes pulse{0%{box-shadow:0 0 0 0 #00ff8855}70%{box-shadow:0 0 0 15px #00ff8800}100%{box-shadow:0 0 0 0 #00ff8800}}
-.stats{display:flex;gap:8px}
-.stat{flex:1;background:rgba(0,0,0,0.4);border-radius:12px;padding:10px;text-align:center;border:1px solid #222}
-.stat b{font-size:26px;display:block}
-.quick{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
-.quick span{background:#1a2744;border:1px solid #2a3a5a;padding:6px 10px;border-radius:20px;font-size:12px;cursor:pointer}
-.wave{height:50px;background:linear-gradient(90deg,transparent,#00ffaa33,transparent);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-top:8px;overflow:hidden}
-.wave-bar{width:2px;height:20px;background:#00ff88;margin:0 1px;animation:wave 0.5s infinite alternate}
-@keyframes wave{from{height:5px}to{height:35px}}
-.lang{display:flex;gap:8px;margin-top:8px}
-.lang button{padding:8px 14px;border-radius:20px;border:none;cursor:pointer}
-.active{background:#1a6dff;color:#fff}
-.footer{text-align:center;font-size:11px;color:#666;margin-top:12px}
-.safe{color:#00ff88;font-weight:bold}
+body{background:#020c1c;color:#fff;overflow-x:hidden}
+#splash{position:fixed;inset:0;z-index:9999;background:radial-gradient(#0a1f45,#020c1c);display:flex;align-items:center;justify-content:center}
+.frame{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0}
+.frame.active{opacity:1;animation:fade .6s ease}
+@keyframes fade{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.shield{width:150px;height:170px;background:linear-gradient(135deg,#7ab8ff,#0050d0);clip-path:polygon(50% 0,100% 18%,100% 68%,50% 100%,0 68%,0 18%);display:grid;place-items:center;font-size:80px;box-shadow:0 0 50px #5ba8ff}
+.wave{position:absolute;width:400px;height:400px;border:2px solid rgba(0,234,255,.4);border-radius:50%;animation:waveOut 2s infinite}
+@keyframes waveOut{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.8);opacity:0}}
+h1{margin-top:28px;font-size:28px;color:#5ba8ff}
+.badge{margin-top:26px;background:linear-gradient(90deg,#231a00,#4a3600);border:1.8px solid #d4a43c;border-radius:40px;padding:8px 18px;display:flex;align-items:center;gap:14px}
+#app{display:none;min-height:100vh;padding:20px}
+#app.show{display:block}
+.card{max-width:420px;margin:20px auto;background:rgba(255,255,255,.06);border:1px solid rgba(91,168,255,.2);border-radius:20px;padding:20px}
+.btn{width:100%;padding:14px;border:none;border-radius:12px;font-weight:700;background:linear-gradient(90deg,#3a8bff,#0050ff);color:#fff}
 </style>
 </head>
 <body>
-<div class="phone">
-  <div class="header">
-    <div style="font-size:28px">🛡️</div>
-    <div><h1>WORLD AI POLICE V5 ✓</h1><span>Made by <b style="color:#6aa8ff">BADY</b> Beed ✓</span></div>
+<div id="splash">
+  <div class="frame active" id="f1">
+    <div style="position:absolute;top:18px;left:16px;font-size:10px;color:#d4a43c;border:1px solid #d4a43c;padding:4px 10px;border-radius:20px">FRAME 1 • LOGO APPEARS</div>
+    <div class="shield">✓</div>
+    <h1>WORLD AI POLICE <b>V5</b></h1>
+    <p>Made by <b>BADY</b> Beed</p>
+    <div class="badge">◉ Crafted by <b>BADY Beed</b> - OFFICIAL SEAL</div>
   </div>
-  <p style="text-align:center;color:#5a8abf;margin-bottom:10px;font-size:13px">AI Protection Assistant</p>
-
-  <input id="userInput" class="input-box" placeholder="Type in English... ex: is this link scam?">
-  <div class="btns">
-    <button class="btn blue" onclick="askAI()">✨ ASK AI</button>
-    <button class="btn green" onclick="startVoice()">🔊 SUNO</button>
+  <div class="frame" id="f2">
+    <div style="position:absolute;top:18px;left:16px;font-size:10px;color:#00eaff;border:1px solid #00eaff;padding:4px 10px;border-radius:20px">FRAME 2 • GLOW PULSE</div>
+    <div style="position:relative;display:grid;place-items:center"><div class="wave"></div><div class="shield">✓</div></div>
+    <h1>WORLD AI POLICE <b>V5</b></h1>
+    <div class="badge">◉ Crafted by <b>BADY Beed</b></div>
   </div>
-
-  <div class="card">
-    <b>📡 Real-time Threat Radar</b>
-    <div class="radar" style="margin-top:10px">
-      <div class="radar-circle">●</div>
-      <div><div class="safe">SAFE — No active threats detected ●</div><small style="color:#5f8a6f">Live · Updating now</small></div>
-    </div>
+  <div class="frame" id="f3">
+    <div style="position:absolute;top:18px;left:16px;font-size:10px;color:#2dff8a;border:1px solid #2dff8a;padding:4px 10px;border-radius:20px">FRAME 3 • LOADING COMPLETE</div>
+    <div class="shield" style="background:linear-gradient(135deg,#2dff8a,#00a85a)">✓</div>
+    <h1 style="color:#4eff9f">WORLD AI POLICE <b>V5</b></h1>
+    <div class="badge">◉ Crafted by <b>BADY Beed</b></div>
   </div>
-
-  <div class="card">
-    <b>🛡️ Protection Stats</b>
-    <div class="stats" style="margin-top:10px">
-      <div class="stat"><small>Scams Blocked</small><b style="color:#fff">1247</b><small>last 30 days</small></div>
-      <div class="stat"><small>Fake News</small><b style="color:#fff">89</b><small>flagged</small></div>
-      <div class="stat"><small>Secure</small><b style="color:#00ff88">100%</b><small>Protection Rate</small></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <b>⚡ Quick Actions</b>
-    <div class="quick">
-      <span onclick="checkAction('Check Link')">🔗 Check Link</span>
-      <span onclick="checkAction('Verify News')">📰 Verify News</span>
-      <span onclick="checkAction('Report Scam')">🚩 Report Scam</span>
-      <span onclick="checkAction('Emergency Call')">🚨 Emergency Call</span>
-    </div>
-  </div>
-
-  <div class="card" id="waveCard" style="display:none">
-    <b>🎙️ Voice Waveform — SUNO Active</b>
-    <div class="wave" id="wave"></div>
-    <small>Listening... Processing your voice query</small>
-  </div>
-
-  <div class="card">
-    <b>🌐 Language</b>
-    <div class="lang">
-      <button class="active" id="enBtn" onclick="setLang('en')">🇬🇧 English</button>
-      <button id="hiBtn" onclick="setLang('hi')">🇮🇳 Hindi</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <b>🕐 Recent Queries</b>
-    <div style="margin-top:8px;font-size:13px;color:#aaa">
-      <div style="padding:8px 0;border-bottom:1px solid #222">is amazon-sale-offer.com legit? <span style="float:right">Today · 14:32</span></div>
-      <div style="padding:8px 0">WhatsApp lottery prize message? <span style="float:right">Today · 12:07</span></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <b>🛡️ Trust & Security</b>
-    <div style="margin-top:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px">
-      <div>♾️ Protected by Meta AI</div><div>♾️ Protected by Meta AI</div>
-      <div>🟢 500M+ WhatsApp users safe</div><div>🟢 500M+ WhatsApp users safe</div>
-    </div>
-  </div>
-
-  <div class="footer">khansahil79362-code.github.io • 2026 BADY Beed All Rights Reserved<br><span id="answerBox" style="color:#fff;display:block;margin-top:10px;background:#111a2a;padding:10px;border-radius:10px;min-height:40px">🎤 Mic dabao... English me bolo: "elon musk kaun hai"</span></div>
 </div>
-
+<div id="app">
+  <div style="text-align:center;padding:40px 10px 20px"><div style="width:80px;height:90px;margin:0 auto;background:linear-gradient(135deg,#5ba8ff,#0047ff);clip-path:polygon(50% 0,100% 18%,100% 68%,50% 100%,0 68%,0 18%);display:grid;place-items:center;font-size:40px">✓</div><h1 style="margin-top:12px;font-size:22px">WORLD AI POLICE V5</h1><p>Made by BADY Beed • Official</p></div>
+  <div class="card"><h3>🛡️ Protection Dashboard</h3><br><button class="btn" onclick="alert('✓ Scan Complete - Protected by BADY Beed Official!')">▶ START PROTECTION SCAN</button><p style="text-align:center;margin-top:30px;font-size:11px;opacity:.4">© 2026 Crafted by BADY Beed | Official Seal</p></div>
+</div>
 <script>
-let lang='en';
-function setLang(l){
- lang=l;
- document.getElementById('enBtn').className=l=='en'?'active':'';
- document.getElementById('hiBtn').className=l=='hi'?'active':'';
- speak(l=='en'?'English selected':'Hindi chuni gayi');
-}
-function askAI(){
- let q=document.getElementById('userInput').value;
- if(!q){q="elon musk kaun hai"} 
- let ans= lang=='hi' ? `BADY AI: "${q}" ke liye check kar raha hu... Ye surakshit hai!` : `BADY AI: Checking "${q}"... This looks safe. If it's a link, don't click unknown offers.`;
- document.getElementById('answerBox').innerText=ans;
- speak(ans);
-}
-function startVoice(){
- document.getElementById('waveCard').style.display='block';
- let wave=document.getElementById('wave');
- wave.innerHTML='';
- for(let i=0;i<40;i++){let b=document.createElement('div');b.className='wave-bar';b.style.animationDelay=i*0.05+'s';wave.appendChild(b);}
- const rec=new (window.SpeechRecognition||window.webkitSpeechRecognition)();
- rec.lang='en-US'; rec.start();
- rec.onresult=(e)=>{
-  let txt=e.results[0][0].transcript;
-  document.getElementById('userInput').value=txt;
-  askAI();
-  document.getElementById('waveCard').style.display='none';
- }
- rec.onerror=()=>{document.getElementById('waveCard').style.display='none';}
-}
-function speak(t){
- let u=new SpeechSynthesisUtterance(t);
- u.lang=lang=='hi'?'hi-IN':'en-US';
- speechSynthesis.speak(u);
-}
-function checkAction(a){
- document.getElementById('userInput').value=a;
- askAI();
-}
+let cur=1;function showFrame(n){document.querySelectorAll('.frame').forEach(f=>f.classList.remove('active'));document.getElementById('f'+n).classList.add('active')}
+setInterval(()=>{cur++;if(cur>3){document.getElementById('splash').style.transition='1s';document.getElementById('splash').style.opacity='0';setTimeout(()=>{document.getElementById('splash').style.display='none';document.getElementById('app').classList.add('show')},800);return}showFrame(cur)},2200);
 </script>
-</div>
 </body>
 </html>
